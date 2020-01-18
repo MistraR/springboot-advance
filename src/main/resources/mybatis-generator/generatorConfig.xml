@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--导入属性配置 -->
+
+
+    <!--指定特定数据库的jdbc驱动jar包的位置 -->
+    <classPathEntry
+            location="src/main/resources/mybatis-generator/mysql-connector-java-5.1.6.jar"/>
+
+    <!--defaultModelType="flat" 含联合组建的表指定生成实体类为一个，不单独生成主键类（默认值为：conditional）-->
+    <context id="default" targetRuntime="MyBatis3" defaultModelType="flat">
+        <property name="autoDelimitKeywords" value="true"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!-- optional，旨在创建class时，对注释进行控制 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+
+        <!--jdbc的数据库连接 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://121.43.169.100:3306/project"
+                        userId="root"
+                        password="qazwsx123">
+        </jdbcConnection>
+
+
+        <!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制-->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- Model模型生成器,用来生成含有主键key的类，记录类 以及查询Example类
+            targetPackage     指定生成的model生成所在的包名
+            targetProject     指定在该项目下所在的路径
+        -->
+        <javaModelGenerator targetPackage="com.example.dao.entity" targetProject="src/main/java">
+            <!-- 是否对model添加 构造函数 -->
+            <property name="constructorBased" value="false"/>
+
+            <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
+            <property name="enableSubPackages" value="false"/>
+
+            <!-- 建立的Model对象是否 不可改变  即生成的Model对象不会有 setter方法，只有构造方法 -->
+            <property name="immutable" value="false"/>
+
+            <!-- 给Model添加一个父类 -->
+            <!--<property name="rootClass" value="com.foo.louis.Hello"/>-->
+
+            <!-- 是否对类CHAR类型的列的数据进行trim操作 -->
+            <property name="trimStrings" value="false"/>
+        </javaModelGenerator>
+
+        <!--Mapper映射文件生成所在的目录 为每一个数据库的表生成对应的SqlMap文件 -->
+        <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
+                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
+                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
+        -->
+        <javaClientGenerator targetPackage="com.example.dao.mappers" targetProject="src/main/java"
+                             type="XMLMAPPER">
+        </javaClientGenerator>
+
+        <!--用户-权限模块-->
+        <!--<table tableName="t_user" enableCountByExample="true" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_basic_role" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_basic_role_res" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_basic_res" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_user_detail" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_user_granary_transaction" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_user_integral_transaction" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_user_location" enableCountByExample="true" enableUpdateByExample="true"-->
+        <!--enableDeleteByExample="true"-->
+        <!--enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--</table>-->
+        <!--<table tableName="t_user_money_transaction" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--&lt;!&ndash;商品模块&ndash;&gt;-->
+        <!--<table tableName="t_product" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_product_city_price" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_product_images" enableCountByExample="true" enableUpdateByExample="true"-->
+        <!--enableDeleteByExample="true"-->
+        <!--enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--</table>-->
+        <!--<table tableName="t_product_kind" enableCountByExample="true" enableUpdateByExample="true"-->
+        <!--enableDeleteByExample="true"-->
+        <!--enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--</table>-->
+        <!--<table tableName="t_product_kind_scheme" enableCountByExample="true" enableUpdateByExample="true"-->
+        <!--enableDeleteByExample="true"-->
+        <!--enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--</table>-->
+        <!--<table tableName="t_product_kind_scheme_line" enableCountByExample="true" enableUpdateByExample="true"-->
+        <!--enableDeleteByExample="true"-->
+        <!--enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--</table>-->
+        <!--<table tableName="t_shop_car" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_subscribe" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_subscribe_join" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--&lt;!&ndash;订单模块&ndash;&gt;-->
+        <!--<table tableName="t_order" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_order_line" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--&lt;!&ndash;商户&ndash;&gt;-->
+        <!--<table tableName="t_merchant_auth" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_merchant_product_store" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_merchant_scheme" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_merchant_setting" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_merchant_auth_record" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_supply_auth_record" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--&lt;!&ndash;其他&ndash;&gt;-->
+        <!--<table tableName="t_phone_code" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_phone_message" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_city_info" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="t_city_level_info" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="sys_dict_set" enableCountByExample="true" enableUpdateByExample="true"-->
+        <!--enableDeleteByExample="true"-->
+        <!--enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--</table>-->
+        <!--<table tableName="sys_dict_set_value" enableCountByExample="true" enableUpdateByExample="true"-->
+        <!--enableDeleteByExample="true"-->
+        <!--enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--</table>-->
+        <!--<table tableName="notice" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="backend_user" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="integral_daily_ratio_record" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="order_complain" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="system_static_data" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="user_purse" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="user_cash_withdraw" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>-->
+        <!--        <table tableName="t_product_often" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--               enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--        </table>-->
+        <!--        <table tableName="t_user_service_money" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--               enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--        </table>-->
+        <!--        <table tableName="t_user_merchant_discount" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--               enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--        </table>-->
+        <!--        <table tableName="t_merchant_delivery_area" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--               enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--        <table tableName="user_cash_withdraw" enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false"-->
+<!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--        </table>-->
+<!--        <table tableName="t_store_user_relation" enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false"-->
+<!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--        </table>-->
+<!--        <table tableName="t_platform_configure" enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false"-->
+<!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--        </table>-->
+        <table tableName="ccb_pay_order" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+    </context>
+
+</generatorConfiguration>
