@@ -21,7 +21,7 @@ import java.util.List;
 public interface JpaUserRepository extends JpaRepository<JpaUser,Long>, JpaSpecificationExecutor<JpaUser> {
 
 
-    JpaUser findFirstByUserName(String name);
+    JpaUser findFirstByNickName(String name);
 
     @Query(value = "from User where position =?1")
     List<JpaUser> selectByCustomSqlTest1(String position);

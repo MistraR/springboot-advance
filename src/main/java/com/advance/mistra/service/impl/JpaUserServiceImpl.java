@@ -63,7 +63,7 @@ public class JpaUserServiceImpl implements JpaUserService {
 
     @Override
     public JpaUser jpaName(JpaUserQueryVo userQueryVo) {
-        return jpaJpaUserRepository.findFirstByJpaUserName(userQueryVo.getJpaUserName());
+        return jpaJpaUserRepository.findFirstByNickName(userQueryVo.getNickName());
     }
 
     /**
@@ -96,7 +96,7 @@ public class JpaUserServiceImpl implements JpaUserService {
                 Path<String> userName = root.get("userName");
                 Path<String> position = root.get("position");
                 //这里可以设置任意条查询条件
-                query.where(cb.like(userName, "%" + userQueryVo.getJpaUserName() + "%"), cb.like(position, "%" + userQueryVo.getPosition() + "%"));
+                query.where(cb.like(userName, "%" + userQueryVo.getUserName() + "%"), cb.like(position, "%" + userQueryVo.getPosition() + "%"));
                 //这种方式使用JPA的API设置了查询条件，所以不需要再返回查询条件Predicate给Spring Data Jpa，故最后return null;即可。
                 return null;
             }
@@ -117,7 +117,7 @@ public class JpaUserServiceImpl implements JpaUserService {
         Page<JpaUser> page = jpaJpaUserRepository.findAll(new Specification<JpaUser>() {
             @Override
             public javax.persistence.criteria.Predicate toPredicate(Root<JpaUser> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-                Predicate predicate1 = cb.like(root.get("userName"),"%" + userQueryVo.getJpaUserName() + "%");
+                Predicate predicate1 = cb.like(root.get("userName"),"%" + userQueryVo.getUserName() + "%");
                 Predicate predicate2 = cb.like(root.get("position"),"%" + userQueryVo.getPosition() + "%");
                 query.where(cb.or(predicate1,predicate2));
                 //等于:query.where(cb.or(cb.like(root.get("userName"),"%" + userQueryVo.getJpaUserName() + "%"),cb.like(root.get("position"),"%" + userQueryVo.getPosition() + "%")));
