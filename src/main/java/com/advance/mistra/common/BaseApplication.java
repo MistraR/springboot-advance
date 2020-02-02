@@ -19,7 +19,7 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 public class BaseApplication {
 
     @Bean
-    public ServletRegistrationBean dispatcherServlet() {
+    public ServletRegistrationBean dispatcherRegistration() {
         //注解扫描上下文
         AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
         //通过构造函数指定dispatcherServlet的上下文

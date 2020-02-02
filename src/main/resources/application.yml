@@ -5,7 +5,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/springboot?useUnicode=true&amp;characterEncoding=UTF-8
+    url: jdbc:mysql://112.74.38.117:3306/springboot?useUnicode=true&characterEncoding=utf-8
     username: mistra
     password: 123456
     # 初始化大小，最小，最大
@@ -57,7 +57,6 @@ mybatis-plus:
     #逻辑删除配置（下面3个配置）
     logic-delete-value: 1
     logic-not-delete-value: 0
-    sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false

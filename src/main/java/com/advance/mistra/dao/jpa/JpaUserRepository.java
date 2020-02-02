@@ -23,7 +23,7 @@ public interface JpaUserRepository extends JpaRepository<JpaUser,Long>, JpaSpeci
 
     JpaUser findFirstByNickName(String name);
 
-    @Query(value = "from User where position =?1")
+    @Query(value = "from JpaUser where position =?1")
     List<JpaUser> selectByCustomSqlTest1(String position);
 
     @Query(value = "select * from jpa_user where position = ?1",nativeQuery = true)
