@@ -117,9 +117,9 @@ public class JpaUserServiceImpl implements JpaUserService {
         Page<JpaUser> page = jpaJpaUserRepository.findAll(new Specification<JpaUser>() {
             @Override
             public javax.persistence.criteria.Predicate toPredicate(Root<JpaUser> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-                Predicate predicate1 = cb.like(root.get("userName"),"%" + userQueryVo.getUserName() + "%");
-                Predicate predicate2 = cb.like(root.get("position"),"%" + userQueryVo.getPosition() + "%");
-                query.where(cb.or(predicate1,predicate2));
+                Predicate predicate1 = cb.like(root.get("userName"), "%" + userQueryVo.getUserName() + "%");
+                Predicate predicate2 = cb.like(root.get("position"), "%" + userQueryVo.getPosition() + "%");
+                query.where(cb.or(predicate1, predicate2));
                 //等于:query.where(cb.or(cb.like(root.get("userName"),"%" + userQueryVo.getJpaUserName() + "%"),cb.like(root.get("position"),"%" + userQueryVo.getPosition() + "%")));
                 return null;
             }
@@ -143,16 +143,16 @@ public class JpaUserServiceImpl implements JpaUserService {
 //        query.orderBy(cb.desc(root.get("uuid").as(Integer.class)));  
 //        return query.getRestriction();  
 
-        Specification<JpaUser> specification= new Specification<JpaUser>(){
+        Specification<JpaUser> specification = new Specification<JpaUser>() {
             @Override
             public Predicate toPredicate(Root<JpaUser> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                Predicate predicate = criteriaBuilder.like(root.get("userName").as(String.class),"%索%");
+                Predicate predicate = criteriaBuilder.like(root.get("userName").as(String.class), "%索%");
                 criteriaQuery.where(predicate);
                 criteriaQuery.orderBy(criteriaBuilder.desc(root.get("id").as(Integer.class)));
                 return criteriaQuery.getRestriction();
             }
         };
-        PageRequest pageRequest = new PageRequest(0,10);
-        return jpaJpaUserRepository.findAll(specification,pageRequest);
+        PageRequest pageRequest = PageRequest.of(0, 10);
+        return jpaJpaUserRepository.findAll(specification, pageRequest);
     }
 }
