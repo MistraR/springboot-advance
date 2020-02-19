@@ -3,10 +3,8 @@ package com.advance.mistra.model.jpa;
 import io.swagger.annotations.ApiParam;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * @Author: Mistra
@@ -20,13 +18,21 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "jpa_role")
+@org.hibernate.annotations.Table(appliesTo = "jpa_role", comment = "角色表")
 public class JpaRole {
 
     @Id
     @GeneratedValue
     @ApiParam("主键ID")
-    protected Long id;
+    @Column(name = "id")
+    private Long id;
 
-    @ApiParam("用角色名")
+    @ApiParam("角色名")
+    @Column(name = "role_name", columnDefinition = "VARCHAR(64) NOT NULL COMMENT '角色名'")
     private String roleName;
+
+    @ManyToOne
+    @JoinColumn(name = "permission_id", referencedColumnName = "id")
+    private JpaPermission permission;
+
 }

@@ -2,6 +2,7 @@ package com.advance.mistra.service.impl;
 
 import com.advance.mistra.common.request.PageCondition;
 import com.advance.mistra.dao.jpa.JpaUserRepository;
+import com.advance.mistra.dao.jpa.JpaUserSpecification;
 import com.advance.mistra.model.jpa.JpaUser;
 import com.advance.mistra.model.jpa.JpaUserQueryVo;
 import com.advance.mistra.service.JpaUserService;
@@ -153,6 +154,13 @@ public class JpaUserServiceImpl implements JpaUserService {
             }
         };
         PageRequest pageRequest = PageRequest.of(0, 10);
+        return jpaJpaUserRepository.findAll(specification, pageRequest);
+    }
+
+    @Override
+    public Page<JpaUser> tables(JpaUserQueryVo userQueryVo) {
+        PageRequest pageRequest = PageRequest.of(0, 10);
+        Specification<JpaUser> specification = new JpaUserSpecification(userQueryVo);
         return jpaJpaUserRepository.findAll(specification, pageRequest);
     }
 }

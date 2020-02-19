@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://112.74.38.117:3306/springboot?useUnicode=true&characterEncoding=utf-8
     username: mistra
     password: 123456
@@ -32,7 +32,15 @@ spring:
       connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
       # 合并多个DruidDataSource的监控数据
       use-global-data-source-stat: true
-
+  jpa:
+    show-sql: true
+    hibernate:
+      # 自动创建、更新、验证数据库表结构
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties:
+      hibernate:
+        dialect: com.advance.mistra.dao.jpa.MySQLTableType
 
 # mybatis-plus
 mybatis-plus:
@@ -63,12 +71,7 @@ mybatis-plus:
     #配置JdbcTypeForNull
     jdbc-type-for-null: 'null'
 
-jpa:
-  hibernate:
-    # 自动创建、更新、验证数据库表结构
-    ddl-auto: update  # 第一次简表create  后面用update
-  # 显示sql
-  show-sql: true
+
 
 
 

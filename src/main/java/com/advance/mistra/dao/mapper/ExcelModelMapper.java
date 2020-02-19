@@ -1,4 +1,4 @@
-package com.advance.mistra.dao;
+package com.advance.mistra.dao.mapper;
 
 import com.advance.mistra.model.ExcelModel;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

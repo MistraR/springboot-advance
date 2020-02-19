@@ -38,73 +38,79 @@ public class JpaUserController {
 
     @ApiOperation("新增")
     @AddUrl
-    public void save(JpaUser user){
+    public void save(JpaUser user) {
         jpaUserService.save(user);
     }
 
     @ApiOperation("查询单条")
     @FindOneUrl
-    public JpaUser getOne(Long id){
+    public JpaUser getOne(Long id) {
         return jpaUserService.getOne(id);
     }
 
     @ApiOperation("删除")
     @DeleteUrl
-    public void delete(Long id){
+    public void delete(Long id) {
         jpaUserService.delete(id);
     }
 
     @ApiOperation("分页查询2-Jpa自带的查询辅助类")
     @PageUrl
-    public Page<JpaUser> getPage(Pageable pageable, JpaUserQueryVo userQueryVo){
-        return jpaUserService.getPage(pageable,userQueryVo);
+    public Page<JpaUser> getPage(Pageable pageable, JpaUserQueryVo userQueryVo) {
+        return jpaUserService.getPage(pageable, userQueryVo);
     }
 
     @ApiOperation("自定义sql测试1")
     @GetMapping("/customSql1")
-    public List<JpaUser> customSql1(JpaUserQueryVo userQueryVo){
+    public List<JpaUser> customSql1(JpaUserQueryVo userQueryVo) {
         return jpaUserService.findByCustomSqlTest1(userQueryVo);
     }
 
     @ApiOperation("自定义sql测试2")
     @GetMapping("/customSql2")
-    public List<JpaUser> customSql2(JpaUserQueryVo userQueryVo){
+    public List<JpaUser> customSql2(JpaUserQueryVo userQueryVo) {
         return jpaUserService.findByCustomSqlTest2(userQueryVo);
     }
 
     @ApiOperation("Jpa命名规范接口测试")
     @GetMapping("/jpaName")
-    public JpaUser jpaName(JpaUserQueryVo userQueryVo){
+    public JpaUser jpaName(JpaUserQueryVo userQueryVo) {
         return jpaUserService.jpaName(userQueryVo);
     }
 
     @ApiOperation("Jpa自带的分页,排序和条件查询测试")
     @GetMapping("/jpaPageSelect")
-    public Page<JpaUser> jpaPageSelect(PageCondition condition, JpaUserQueryVo userQueryVo){
-        return jpaUserService.jpaPageSelect(condition,userQueryVo);
+    public Page<JpaUser> jpaPageSelect(PageCondition condition, JpaUserQueryVo userQueryVo) {
+        return jpaUserService.jpaPageSelect(condition, userQueryVo);
     }
 
     @ApiOperation("JpaSpecificationExecutor条件查询接口测试1")
     @GetMapping("/jpaSpecification1")
-    public Page<JpaUser> jpaSpecificationTest1(PageCondition condition,JpaUserQueryVo userQueryVo){
-        return jpaUserService.jpaSpecificationTest1(condition,userQueryVo);
+    public Page<JpaUser> jpaSpecificationTest1(PageCondition condition, JpaUserQueryVo userQueryVo) {
+        return jpaUserService.jpaSpecificationTest1(condition, userQueryVo);
     }
 
     @ApiOperation("JpaSpecificationExecutor条件查询接口测试2")
     @GetMapping("/jpaSpecification2")
-    public Page<JpaUser> jpaSpecificationTest2(PageCondition condition,JpaUserQueryVo userQueryVo){
-        return jpaUserService.jpaSpecificationTest2(condition,userQueryVo);
+    public Page<JpaUser> jpaSpecificationTest2(PageCondition condition, JpaUserQueryVo userQueryVo) {
+        return jpaUserService.jpaSpecificationTest2(condition, userQueryVo);
     }
 
     @ApiOperation("关联查询")
     @GetMapping("/getRelation")
-    public List<JpaUser> getRelation(){
+    public List<JpaUser> getRelation() {
         return jpaUserService.getRelation();
     }
 
     @ApiOperation("关联查询-分页")
     @GetMapping("/getRelatePage")
-    public Page<JpaUser> getRelatePage(){
+    public Page<JpaUser> getRelatePage() {
         return jpaUserService.getRelatePage();
+    }
+
+    @ApiOperation("多表查询")
+    @GetMapping("/tables")
+    public Page<JpaUser> tables(JpaUserQueryVo userQueryVo) {
+        return jpaUserService.tables(userQueryVo);
     }
 }

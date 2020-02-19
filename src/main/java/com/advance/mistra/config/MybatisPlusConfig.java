@@ -22,7 +22,7 @@ import javax.sql.DataSource;
  */
 @EnableTransactionManagement
 @Configuration
-@MapperScan("com.advance.mistra")
+@MapperScan("com.advance.mistra.dao.mapper")
 public class MybatisPlusConfig {
 
     /**

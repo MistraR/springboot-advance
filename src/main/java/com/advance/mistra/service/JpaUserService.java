@@ -33,13 +33,15 @@ public interface JpaUserService {
 
     JpaUser jpaName(JpaUserQueryVo userQueryVo);
 
-    Page<JpaUser> jpaPageSelect(PageCondition condition,JpaUserQueryVo userQueryVo);
+    Page<JpaUser> jpaPageSelect(PageCondition condition, JpaUserQueryVo userQueryVo);
 
-    Page<JpaUser> jpaSpecificationTest1(PageCondition condition,JpaUserQueryVo userQueryVo);
+    Page<JpaUser> jpaSpecificationTest1(PageCondition condition, JpaUserQueryVo userQueryVo);
 
-    Page<JpaUser> jpaSpecificationTest2(PageCondition condition,JpaUserQueryVo userQueryVo);
+    Page<JpaUser> jpaSpecificationTest2(PageCondition condition, JpaUserQueryVo userQueryVo);
 
     List<JpaUser> getRelation();
 
     Page<JpaUser> getRelatePage();
+
+    Page<JpaUser> tables(JpaUserQueryVo userQueryVo);
 }

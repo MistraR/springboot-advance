@@ -15,12 +15,24 @@ import lombok.Data;
 @Data
 public class JpaUserQueryVo {
 
+    @ApiParam("id字符串，用来测试 in 查询")
+    private String ids;
+
     @ApiParam("用户名")
     private String userName;
 
     @ApiParam("昵称")
     private String nickName;
 
+    @ApiParam("权限名称")
+    private String permissionName;
+
+    @ApiParam("角色名称")
+    private String roleName;
+
     @ApiParam("岗位")
     private String position;
+
+    @ApiParam("年龄")
+    private Integer age;
 }
