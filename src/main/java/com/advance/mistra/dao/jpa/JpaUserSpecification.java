@@ -43,6 +43,21 @@ public class JpaUserSpecification implements Specification<JpaUser> {
     public Predicate toPredicate(Root<JpaUser> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
         List<Predicate> predicates = new ArrayList<Predicate>();
         /**
+         * 2张表
+         */
+        if (StringUtils.isNotEmpty(param.getRoleName())) {
+            Join<JpaRole, JpaUser> join = root.join("role", JoinType.LEFT);
+            predicates.add(criteriaBuilder.equal(join.get("roleName"), param.getRoleName()));
+        }
+        /**
+         * 跨表查询，3个表
+         * 需要通过权限名称查出对应的用户，JpaUser.role.permission = param.getPermissionName()
+         */
+        if (StringUtils.isNotEmpty(param.getPermissionName())) {
+            Join<JpaPermission, JpaUser> join = root.join("role", JoinType.LEFT);
+            predicates.add(criteriaBuilder.equal(join.get("permission").get("permissionName"), param.getPermissionName()));
+        }
+        /**
          * in查询
          */
         if (StringUtils.isNotEmpty(param.getIds())) {
@@ -69,24 +84,6 @@ public class JpaUserSpecification implements Specification<JpaUser> {
         if (param.getAge() != null) {
             predicates.add(criteriaBuilder.le(root.get("age"), param.getAge()));
             predicates.add(criteriaBuilder.gt(root.get("age"), param.getAge() - 10));
-        }
-        if (StringUtils.isNotEmpty(param.getPosition())) {
-            predicates.add(criteriaBuilder.equal(root.get("position"), param.getPosition()));
-        }
-        /**
-         * 2张表
-         */
-        if (StringUtils.isNotEmpty(param.getRoleName())) {
-            Join<JpaRole, JpaUser> join = root.join("role", JoinType.LEFT);
-            predicates.add(criteriaBuilder.equal(join.get("roleName"), param.getRoleName()));
-        }
-        /**
-         * 跨表查询，3个表
-         * 需要通过权限名称查出对应的用户，JpaUser.role.permission = param.getPermissionName()
-         */
-        if (StringUtils.isNotEmpty(param.getPermissionName())) {
-            Join<JpaPermission, JpaUser> join = root.join("role", JoinType.LEFT);
-            predicates.add(criteriaBuilder.equal(join.get("permission").get("permissionName"), param.getPermissionName()));
         }
         return predicates.isEmpty() ? criteriaBuilder.conjunction() : criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
     }
