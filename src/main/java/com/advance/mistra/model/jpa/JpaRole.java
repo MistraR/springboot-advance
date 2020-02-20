@@ -1,5 +1,6 @@
 package com.advance.mistra.model.jpa;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.annotations.ApiParam;
 import lombok.Data;
 
@@ -31,8 +32,15 @@ public class JpaRole {
     @Column(name = "role_name", columnDefinition = "VARCHAR(64) NOT NULL COMMENT '角色名'")
     private String roleName;
 
-    @ManyToOne
-    @JoinColumn(name = "permission_id", referencedColumnName = "id")
+    @JsonBackReference
+    @OneToMany(targetEntity = JpaUser.class, mappedBy = "role", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    private List<JpaUser> jpaUsers;
+
+    /**
+     * 一对一的关系 在其中一个表维护就好了
+     */
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "permission_id")
     private JpaPermission permission;
 
 }

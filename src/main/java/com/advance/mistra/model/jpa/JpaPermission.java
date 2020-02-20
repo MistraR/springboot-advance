@@ -4,7 +4,6 @@ import io.swagger.annotations.ApiParam;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * @Author: Mistra

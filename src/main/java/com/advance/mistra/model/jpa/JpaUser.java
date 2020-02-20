@@ -65,7 +65,11 @@ public class JpaUser {
     @Column(name = "latitude", precision = 10, scale = 7)
     private BigDecimal latitude;
 
+    /**
+     * @ManyToOne 用户:角色 多个用户对应一个角色，当我们创建表结构时，应在多的一方去维护表关系，也就是说，应将@ManyToOne注解加在用户表中，并且设置为懒加载。
+     * @JsonBackReference 生成json时该属性排除
+     */
     @ManyToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    @JoinColumn(name = "role_id")
     private JpaRole role;
 }
