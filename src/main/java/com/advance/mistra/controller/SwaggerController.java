@@ -22,9 +22,8 @@ public class SwaggerController {
 
     @ApiOperation(value = "欢迎接口", notes = "欢迎接口", response = ResponseResult.class)
     @GetMapping(value = "/hello")
-    public ResponseResult hello(@ApiParam(value = "hello", required = true)
-                                @RequestParam(required = true) String index, @ApiParam(value = "hello", required = true)
-                                @RequestParam(required = true) String index2) {
+    public ResponseResult hello(@ApiParam(value = "hello", required = true) @RequestParam String index,
+                                @ApiParam(value = "hello", required = true) @RequestParam String index2) {
         return new ResponseResult();
     }
 

@@ -1,7 +1,6 @@
 package com.advance.mistra.config;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -24,7 +23,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @Configuration
 @EnableSwagger2
-@ConfigurationProperties
 public class SwaggerConfig {
 
     private static final String BASE_PACKAGE = "com.advance.mistra.controller";
@@ -47,9 +45,9 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiInfo() {
-        //http://localhost:8888/swagger-ui.html
+        //http://localhost:8080/swagger-ui.html
         return new ApiInfoBuilder()
-                .title("RoronoaZoro丶小王瑞")
+                .title("RoronoaZoro丶")
                 .description("----------接口文档----------")
                 .termsOfServiceUrl("www.mistra.wang")
                 .contact(new Contact("WangRui", "", ""))

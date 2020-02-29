@@ -22,4 +22,6 @@ public class KafkaProperties {
 
     private String clientId;
 
+    private String topic = "test-topic";
+
 }
