@@ -13,7 +13,7 @@ import java.util.Properties;
  * @author Mistra
  * @ Version: 1.0
  * @ Time: 2020/2/29 19:57
- * @ Description:
+ * @ Description: KafkaProducer方式发送消息
  * @ Copyright (c) Mistra,All Rights Reserved.
  * @ Github: https://github.com/MistraR
  * @ CSDN: https://blog.csdn.net/axela30w

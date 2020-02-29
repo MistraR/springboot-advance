@@ -3,6 +3,7 @@ package com.advance.mistra.controller;
 import com.advance.mistra.common.response.ResponseResult;
 import com.advance.mistra.config.kafka.KafkaProducerCreator;
 import com.advance.mistra.config.kafka.KafkaProperties;
+import com.advance.mistra.config.kafka.KafkaTemplateProducer;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.PostConstruct;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -37,22 +39,37 @@ public class KafkaController {
     private KafkaProducerCreator kafkaProducerCreator;
 
     @Autowired
-    private KafkaProperties kafkaProperties;
+    private KafkaTemplateProducer kafkaTemplateProducer;
+
+    private Producer<String, String> kafkaProducer;
+
+    @PostConstruct
+    private void init() {
+        kafkaProducer = kafkaProducerCreator.createProducer();
+    }
 
     @ApiOperation(value = "消息生产者接口", notes = "消息生产者接口", response = ResponseResult.class)
     @GetMapping(value = "/produce")
     public ResponseResult produce(@ApiParam(value = "hello", required = true) @RequestParam String index) {
-        Producer<String, String> producer = kafkaProducerCreator.createProducer();
-        ProducerRecord<String, String> record = new ProducerRecord<>(kafkaProperties.getTopic(), "hello, Kafka! " + index);
+        ProducerRecord<String, String> record = new ProducerRecord<>(KafkaProperties.TOPIC, "hello, Kafka! " + index);
         try {
             // 发送消息
-            RecordMetadata metadata = producer.send(record).get();
+            RecordMetadata metadata = kafkaProducer.send(record).get();
             log.info("Record sent to partition {} with offset {}", metadata.partition(), metadata.offset());
         } catch (ExecutionException | InterruptedException e) {
             log.debug("Error in sending record,{}", e.getMessage());
         }
-        producer.close();
-        return new ResponseResult();
+        // 需要时，关闭kafkaProducer
+        //kafkaProducer.close();
+        return new ResponseResult(true);
+    }
+
+    @ApiOperation(value = "KafkaTemplate消息生产者接口", notes = "KafkaTemplate消息生产者接口", response = ResponseResult.class)
+    @GetMapping(value = "/KafkaTemplateProduce")
+    public ResponseResult kafkaTemplateProduce(@ApiParam(value = "hello", required = true) @RequestParam String index) {
+        // 发送消息
+        kafkaTemplateProducer.send("KafkaTemplat hello, Kafka! " + index);
+        return new ResponseResult(true);
     }
 
 }

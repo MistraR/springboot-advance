@@ -22,6 +22,10 @@ public class KafkaProperties {
 
     private String clientId;
 
-    private String topic = "test-topic";
+    public static final String TOPIC = "test-topic";
+
+    public static final String GROUP_ID_1 = "test-group1";
+
+    public static final String GROUP_ID_2 = "test-group2";
 
 }

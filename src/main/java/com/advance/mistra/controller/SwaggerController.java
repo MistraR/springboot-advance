@@ -24,7 +24,7 @@ public class SwaggerController {
     @GetMapping(value = "/hello")
     public ResponseResult hello(@ApiParam(value = "hello", required = true) @RequestParam String index,
                                 @ApiParam(value = "hello", required = true) @RequestParam String index2) {
-        return new ResponseResult();
+        return new ResponseResult(true);
     }
 
 }

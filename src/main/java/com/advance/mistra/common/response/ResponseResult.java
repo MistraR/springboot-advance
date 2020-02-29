@@ -20,15 +20,19 @@ import org.slf4j.MDC;
 public class ResponseResult {
 
     @ApiModelProperty(value = "是否处理成功", name = "success", example = "true")
-    private Boolean success;
+    private Boolean success = true;
     @ApiModelProperty(value = "返回码", name = "code", example = "0")
-    private Integer code;
+    private Integer code = 200;
     @ApiModelProperty(value = "处理消息", name = "msg", example = "处理成功")
-    private String msg;
+    private String msg = "处理成功";
     @ApiModelProperty(value = "返回数据", name = "data", example = "{}")
-    private Object data;
+    private Object data = "{}";
     @ApiModelProperty(value = "唯一请求id，由logback生成", name = "requestId", example = "a1b2c3d4e5f6g7h8i9")
     private String requestId = MDC.get("requestId");
+
+    public ResponseResult() {
+        super();
+    }
 
     public ResponseResult(Boolean success) {
         super();
@@ -118,10 +122,6 @@ public class ResponseResult {
     public ResponseResult setMsg(String msg) {
         this.msg = msg;
         return this;
-    }
-
-    public ResponseResult() {
-        super();
     }
 
     public String toJson() {
