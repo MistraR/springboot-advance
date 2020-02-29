@@ -19,10 +19,10 @@ public class PageCondition implements Serializable {
 
     private static final long serialVersionUID = 9036579753735013235L;
 
-    @ApiParam("当前页,从0开始")
+    @ApiParam(value = "当前页,从0开始", example = "1")
     private int pageNum = 0;
 
-    @ApiParam("每页数量")
+    @ApiParam(value = "每页数量", example = "1")
     private int pageSize = 10;
 
     @ApiParam("排序字段")

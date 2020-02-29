@@ -29,16 +29,30 @@ public class SwaggerConfig {
 
     private static final String BASE_PACKAGE = "com.advance.mistra.controller";
 
+    private static final String BASE_PACKAGE_2 = "com.advance.mistra.config.api";
+
     /**
      * 是否开启swagger
      */
     @Value("${swagger.enable}")
     private boolean enableSwagger;
 
-    @Bean
-    public Docket createRestApi() {
+    @Bean(value = "defaultApi")
+    public Docket defaultApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
+                .groupName("默认接口")
+                .select()
+                .apis(RequestHandlerSelectors.basePackage(BASE_PACKAGE_2))
+                .paths(PathSelectors.any())
+                .build();
+    }
+
+    @Bean(value = "groupRestApi")
+    public Docket groupRestApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .groupName("分组接口")
                 .enable(enableSwagger)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage(BASE_PACKAGE))
