@@ -1,0 +1,33 @@
+swagger:
+  enable: true
+knife4j:
+  markdowns: classpath:markdown/*
+  basic:
+    enable: false
+    username: mistra
+    password: 123456
+
+spring:
+  kafka:
+    servers: localhost:9092
+    bootstrap-servers: localhost:9092
+    clientId: client1
+    client-id: client1
+    producer:
+      retries: 0
+      # 每次批量发送消息的数量
+      batch-size: 16384
+      buffer-memory: 33554432
+      # 指定消息key和消息体的编解码方式
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: test-hello-group
+      auto-offset-reset: earliest
+      # 自动提交消息偏移量间隔时间 毫秒
+      auto-commit-interval: 100
+      # 开启自动提交
+      enable-auto-commit: true
+      # 指定消息key和消息体的编解码方式
+      key-deserializer: org.apache.kafka.common.serialization.StringSerializer
+      value-deserializer: org.apache.kafka.common.serialization.StringSerializer

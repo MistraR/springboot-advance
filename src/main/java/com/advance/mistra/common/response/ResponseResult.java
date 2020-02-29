@@ -27,7 +27,7 @@ public class ResponseResult {
     private String msg;
     @ApiModelProperty(value = "返回数据", name = "data", example = "{}")
     private Object data;
-    @ApiModelProperty(value = "唯一请求id，由logback生成",name = "requestId",example="a1b2c3d4e5f6g7h8i9")
+    @ApiModelProperty(value = "唯一请求id，由logback生成", name = "requestId", example = "a1b2c3d4e5f6g7h8i9")
     private String requestId = MDC.get("requestId");
 
     public ResponseResult(Boolean success) {
@@ -82,6 +82,13 @@ public class ResponseResult {
             data = new Object();
         }
         this.data = data;
+        return this;
+    }
+
+    public ResponseResult setAll(Boolean success, Integer code, String msg) {
+        this.success = success;
+        this.msg = msg;
+        this.code = code;
         return this;
     }
 

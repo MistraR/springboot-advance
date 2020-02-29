@@ -2,6 +2,8 @@ server:
   port: 8080
 # 数据库访问配置,主数据源，默认的
 spring:
+  profiles:
+    active: dev
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -41,6 +43,7 @@ spring:
     properties:
       hibernate:
         dialect: com.advance.mistra.dao.jpa.MySQLTableType
+
 
 # mybatis-plus
 mybatis-plus:

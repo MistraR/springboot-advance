@@ -1,5 +1,7 @@
 package com.advance.mistra.config;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -15,21 +17,31 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @Author: Mistra
  * @Version: 1.0
  * @Time: 2020/1/18 19:30
- * @Description:
+ * @Description: swagger配置文档
  * @Copyright (c) Mistra,All Rights Reserved.
  * @Github: https://github.com/MistraR
  * @CSDN: https://blog.csdn.net/axela30w
  */
 @Configuration
 @EnableSwagger2
+@ConfigurationProperties
 public class SwaggerConfig {
+
+    private static final String BASE_PACKAGE = "com.advance.mistra.controller";
+
+    /**
+     * 是否开启swagger
+     */
+    @Value("${swagger.enable}")
+    private boolean enableSwagger;
 
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
+                .enable(enableSwagger)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.advance.mistra.controller"))
+                .apis(RequestHandlerSelectors.basePackage(BASE_PACKAGE))
                 .paths(PathSelectors.any())
                 .build();
     }
