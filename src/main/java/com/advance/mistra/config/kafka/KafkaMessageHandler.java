@@ -33,13 +33,13 @@ public class KafkaMessageHandler {
         }
     }
 
-    @KafkaListener(topics = KafkaProperties.TOPIC, groupId = KafkaProperties.GROUP_ID_2)
-    public void topicTest2(ConsumerRecord<?, ?> record, Acknowledgment ack, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
-        Optional message = Optional.ofNullable(record.value());
-        if (message.isPresent()) {
-            Object msg = message.get();
-            log.info("》》》》》》》》》》》》》》》》》》》》》topicTest2消费了Topic:{},Message:{}", topic, msg);
-            ack.acknowledge();
-        }
-    }
+//    @KafkaListener(topics = KafkaProperties.TOPIC, groupId = KafkaProperties.GROUP_ID_2)
+//    public void topicTest2(ConsumerRecord<?, ?> record, Acknowledgment ack, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
+//        Optional message = Optional.ofNullable(record.value());
+//        if (message.isPresent()) {
+//            Object msg = message.get();
+//            log.info("》》》》》》》》》》》》》》》》》》》》》topicTest2消费了Topic:{},Message:{}", topic, msg);
+//            ack.acknowledge();
+//        }
+//    }
 }

@@ -1,5 +1,6 @@
-package com.advance.mistra.config;
+package com.advance.mistra.config.api;
 
+import com.github.xiaoymin.swaggerbootstrapui.annotations.EnableSwaggerBootstrapUI;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,13 +17,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @Author: Mistra
  * @Version: 1.0
  * @Time: 2020/1/18 19:30
- * @Description: swagger配置文档
+ * @Description: Swagger文档基础版地址http://localhost:8080/swagger-ui.html，Swagger文档增强版Knife4j地址:http://localhost:8080/doc.html
  * @Copyright (c) Mistra,All Rights Reserved.
  * @Github: https://github.com/MistraR
  * @CSDN: https://blog.csdn.net/axela30w
  */
 @Configuration
 @EnableSwagger2
+@EnableSwaggerBootstrapUI
 public class SwaggerConfig {
 
     private static final String BASE_PACKAGE = "com.advance.mistra.controller";
@@ -45,12 +47,11 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiInfo() {
-        //http://localhost:8080/swagger-ui.html
         return new ApiInfoBuilder()
                 .title("RoronoaZoro丶")
-                .description("----------接口文档----------")
+                .description("定制化接口文档")
                 .termsOfServiceUrl("www.mistra.wang")
-                .contact(new Contact("WangRui", "", ""))
+                .contact(new Contact("WangRui", "www.mistra.wang", "wrmistra@gmail.com"))
                 .version("1.0")
                 .build();
     }

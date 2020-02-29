@@ -22,7 +22,7 @@ public class JpaPermission {
 
     @Id
     @GeneratedValue
-    @ApiParam("主键ID")
+    @ApiParam(value = "主键ID", example = "1")
     @Column(name = "id", length = 20)
     protected Long id;
 

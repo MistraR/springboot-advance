@@ -33,6 +33,6 @@ public class JpaUserQueryVo {
     @ApiParam("岗位")
     private String position;
 
-    @ApiParam("年龄")
+    @ApiParam(value = "年龄", example = "1")
     private Integer age;
 }

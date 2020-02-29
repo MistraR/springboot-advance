@@ -42,7 +42,7 @@ public class ProducerConsumerTest {
     private void init() {
         executorService.submit(new Producer());
         for (int i = 1; i <= threadCount; i++) {
-//            executorService.submit(new Consumer());
+            executorService.submit(new Consumer());
         }
     }
 

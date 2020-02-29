@@ -39,7 +39,7 @@ public class JpaUser {
 
     @Id
     @GeneratedValue
-    @ApiParam("主键ID")
+    @ApiParam(value = "主键ID", example = "1")
     @Column(name = "id", length = 20)
     private Long id;
 
@@ -55,7 +55,7 @@ public class JpaUser {
     @Column(name = "position")
     private String position;
 
-    @ApiParam("年龄")
+    @ApiParam(value = "年龄", example = "1")
     @Column(name = "age")
     private Integer age;
 

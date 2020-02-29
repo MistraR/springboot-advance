@@ -25,7 +25,7 @@ public class ExcelModel implements Serializable {
     private static final long serialVersionUID = 7978635902861749469L;
 
     @ApiParam("主键id")
-    @TableId(value="id")
+    @TableId(value = "id")
     private Long id;
 
     @ApiParam("姓名")
@@ -33,14 +33,14 @@ public class ExcelModel implements Serializable {
     @ExcelProperty(value = "姓名", index = 0)
     private String name;
 
-    @ApiParam("年龄")
+    @ApiParam(value = "年龄", example = "10")
     @TableField("age")
-    @ExcelProperty(value = "年龄",index = 1)
+    @ExcelProperty(value = "年龄", index = 1)
     private Integer age;
 
     @ApiParam("学校")
     @TableField("school")
-    @ExcelProperty(value = "学校",index = 2)
+    @ExcelProperty(value = "学校", index = 2)
     private String school;
 
 }
