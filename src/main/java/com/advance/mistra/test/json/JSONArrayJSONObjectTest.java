@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -23,7 +24,44 @@ public class JSONArrayJSONObjectTest {
 
     public static void main(String[] args) {
 //        jsonConvertCollention();
-        jsonArray();
+//        jsonArray();
+//        stringToJSONArray();
+//        retainAll();
+        String str = "1";
+        log.info(Arrays.asList(str.split(",")).toString());
+        String ip = "256.2.3.5";
+        boolean b1 = ip.matches("([1-9]|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])(\\.(\\d|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])){3}");
+        log.info("字符串{}{}IP", ip, b1);
+    }
+
+    /**
+     * 取两个集合的交集
+     */
+    public static void retainAll() {
+        List<String> listA = new ArrayList<String>();
+        List<String> listB = new ArrayList<String>();
+        HashSet<String> set = new HashSet<>();
+        listA.add("A");
+        listA.add("B");
+        listB.add("B");
+        listB.add("C");
+        set.add("C");
+        set.add("D");
+        listA.retainAll(listB);
+        listB.retainAll(set);
+        log.info(listA.toString());
+        log.info(listB.toString());
+    }
+
+    public static void stringToJSONArray() {
+        String str = "[]";
+        JSONArray jsonArray1 = JSONArray.parseArray(str);
+        log.info("Size:{},{}", jsonArray1.size(), jsonArray1.toJSONString());
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name", "mistra");
+        JSONArray jsonArray2 = jsonObject.getJSONArray("firm_code");
+        log.info(jsonArray2.toString());
     }
 
     /**
