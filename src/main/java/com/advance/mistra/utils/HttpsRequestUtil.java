@@ -1,104 +1,97 @@
 package com.advance.mistra.utils;
 
-import javax.net.ssl.*;
-import java.io.*;
-import java.net.URL;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.scheme.SchemeRegistry;
+import org.apache.http.conn.ssl.SSLSocketFactory;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+import java.io.IOException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.HashMap;
 
 /**
  * @author Mistra
  * @ Version: 1.0
- * @ Time: 2020/3/10 0:41
+ * @ Time: 2020/3/10 13:39
  * @ Description:
  * @ Copyright (c) Mistra,All Rights Reserved.
  * @ Github: https://github.com/MistraR
  * @ CSDN: https://blog.csdn.net/axela30w
  */
-public class HttpsRequestUtil {
+public class HttpsRequestUtil extends DefaultHttpClient {
 
-    private static final class DefaultTrustManager implements X509TrustManager {
+    public HttpsRequestUtil() throws Exception {
+        super();
+        //传输协议需要根据自己的判断
+        SSLContext ctx = SSLContext.getInstance("TLS");
+        X509TrustManager tm = new X509TrustManager() {
 
-        @Override
-        public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-        }
-
-        @Override
-        public void checkClientTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
-
-        }
-
-        @Override
-        public X509Certificate[] getAcceptedIssuers() {
-            return null;
-        }
-    }
-
-    private static HttpsURLConnection getHttpsURLConnection(String uri, String method) throws IOException {
-        SSLContext ctx = null;
-        try {
-            ctx = SSLContext.getInstance("TLS");
-            ctx.init(new KeyManager[0], new TrustManager[]{new DefaultTrustManager()}, new SecureRandom());
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        SSLSocketFactory ssf = ctx.getSocketFactory();
-
-        URL url = new URL(uri);
-        HttpsURLConnection httpsConn = (HttpsURLConnection) url.openConnection();
-        httpsConn.setSSLSocketFactory(ssf);
-        httpsConn.setHostnameVerifier(new HostnameVerifier() {
             @Override
-            public boolean verify(String arg0, SSLSession arg1) {
-                return true;
+            public void checkClientTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
+
             }
-        });
-        httpsConn.setRequestMethod(method);
-        httpsConn.setDoInput(true);
-        httpsConn.setDoOutput(true);
-        return httpsConn;
+
+            @Override
+            public void checkServerTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
+
+            }
+
+            @Override
+            public X509Certificate[] getAcceptedIssuers() {
+                return new X509Certificate[0];
+            }
+        };
+        ctx.init(null, new TrustManager[]{tm}, null);
+        SSLSocketFactory ssf = new SSLSocketFactory(ctx, SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+        ClientConnectionManager ccm = this.getConnectionManager();
+        SchemeRegistry sr = ccm.getSchemeRegistry();
+        sr.register(new Scheme("https", 443, ssf));
     }
 
-    private static byte[] getBytesFromStream(InputStream is) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        byte[] kb = new byte[1024];
-        int len;
-        while ((len = is.read(kb)) != -1) {
-            baos.write(kb, 0, len);
+    public static String doPost(String url, String map, String charset) {
+        org.apache.http.client.HttpClient httpClient = null;
+        HttpPost httpPost = null;
+        String result = null;
+        try {
+            httpClient = new HttpsRequestUtil();
+            httpPost = new HttpPost(url);
+            //设置参数
+            httpPost.addHeader("Accept", "application/json");
+            httpPost.addHeader("Content-Type", "application/json;charset=UTF-8");
+            StringEntity stringEntity = new StringEntity(map);
+            stringEntity.setContentEncoding("UTF-8");
+            stringEntity.setContentType("application/json");
+            httpPost.setEntity(stringEntity);
+            HttpResponse response = httpClient.execute(httpPost);
+            if (response != null) {
+                HttpEntity resEntity = response.getEntity();
+                if (resEntity != null) {
+                    result = EntityUtils.toString(resEntity, charset);
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        byte[] bytes = baos.toByteArray();
-        baos.close();
-        is.close();
-        return bytes;
+        return result;
     }
 
-    private static void setBytesToStream(OutputStream os, byte[] bytes) throws IOException {
-        ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
-        byte[] kb = new byte[1024];
-        int len;
-        while ((len = bais.read(kb)) != -1) {
-            os.write(kb, 0, len);
-        }
-        os.flush();
-        os.close();
-        bais.close();
+    public static void main(String[] args) throws IOException {
+        String uri = "https://www.baidu.com";
+        HashMap<String,String> map = new HashMap<>();
+        map.put("name","mistra");
+        String bytes = doPost(uri, map.toString(), "utf-8");
+        System.out.println(bytes);
+
     }
-
-    public static byte[] doGet(String uri) throws IOException {
-        HttpsURLConnection httpsConn = getHttpsURLConnection(uri, "GET");
-        return getBytesFromStream(httpsConn.getInputStream());
-    }
-
-    public static byte[] doPost(String uri, String data) throws IOException {
-        HttpsURLConnection httpsConn = getHttpsURLConnection(uri, "POST");
-        setBytesToStream(httpsConn.getOutputStream(), data.getBytes());
-        return getBytesFromStream(httpsConn.getInputStream());
-    }
-
-
 }
