@@ -1,4 +1,4 @@
-package com.advance.mistra.utils;
+package com.advance.mistra.utils.http;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -21,7 +21,7 @@ import java.security.cert.X509Certificate;
  * @author Mistra
  * @ Version: 1.0
  * @ Time: 2020/3/10 14:23
- * @ Description:
+ * @ Description: Https request util
  * @ Copyright (c) Mistra,All Rights Reserved.
  * @ Github: https://github.com/MistraR
  * @ CSDN: https://blog.csdn.net/axela30w

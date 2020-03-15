@@ -1,4 +1,4 @@
-package com.advance.mistra.config.kafka;
+package com.advance.mistra.plugin.kafka;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

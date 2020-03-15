@@ -1,4 +1,4 @@
-package com.advance.mistra.config.kafka;
+package com.advance.mistra.plugin.kafka;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;

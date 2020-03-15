@@ -13,4 +13,6 @@ public class SystemConstans {
 
     public static final String HEADER_LANGUAGE_FLAG = "lan";
 
+    public static final String STRING_SEPARTOR = "lan";
+
 }

@@ -1,4 +1,4 @@
-package com.advance.mistra.utils;
+package com.advance.mistra.utils.http;
 
 
 import org.apache.http.HttpEntity;

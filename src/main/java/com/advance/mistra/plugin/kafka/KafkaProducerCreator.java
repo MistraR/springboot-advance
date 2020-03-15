@@ -1,4 +1,4 @@
-package com.advance.mistra.config.kafka;
+package com.advance.mistra.plugin.kafka;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;

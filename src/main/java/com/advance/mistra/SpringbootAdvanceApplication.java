@@ -1,6 +1,7 @@
 package com.advance.mistra;
 
 import com.advance.mistra.common.BaseApplication;
+import com.advance.mistra.plugin.es.autowired.EnableEsClientModule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -18,6 +19,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableCaching
 @EnableScheduling
+@EnableEsClientModule
 public class SpringbootAdvanceApplication extends BaseApplication {
 
     public static void main(String[] args) {

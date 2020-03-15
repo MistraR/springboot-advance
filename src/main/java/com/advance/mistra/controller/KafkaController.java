@@ -1,9 +1,9 @@
 package com.advance.mistra.controller;
 
 import com.advance.mistra.common.response.ResponseResult;
-import com.advance.mistra.config.kafka.KafkaProducerCreator;
-import com.advance.mistra.config.kafka.KafkaProperties;
-import com.advance.mistra.config.kafka.KafkaTemplateProducer;
+import com.advance.mistra.plugin.kafka.KafkaProducerCreator;
+import com.advance.mistra.plugin.kafka.KafkaProperties;
+import com.advance.mistra.plugin.kafka.KafkaTemplateProducer;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
