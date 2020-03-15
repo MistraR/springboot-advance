@@ -87,7 +87,6 @@ public class EsRestClient {
                 ElasticSearchPool.returnClient(elasticSearchClient);
             }
         }
-
     }
 
 }
