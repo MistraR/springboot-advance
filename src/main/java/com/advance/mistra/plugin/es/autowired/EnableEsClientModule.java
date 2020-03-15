@@ -19,6 +19,6 @@ import java.lang.annotation.Target;
 @Retention(value = java.lang.annotation.RetentionPolicy.RUNTIME)
 @Target(value = {java.lang.annotation.ElementType.TYPE})
 @Documented
-@Import((EsClientAutoConfiguration.class))
+@Import({EsClientAutoConfiguration.class})
 public @interface EnableEsClientModule {
 }

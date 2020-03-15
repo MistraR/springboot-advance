@@ -3,6 +3,7 @@ package com.advance.mistra.plugin.es;
 import com.advance.mistra.plugin.es.pool.ElasticSearchClient;
 import com.advance.mistra.plugin.es.pool.ElasticSearchPool;
 import com.advance.mistra.plugin.es.pool.ElasticSearchPoolFactory;
+import com.advance.mistra.plugin.es.util.RestfulResponseUtil;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
@@ -79,6 +80,7 @@ public class EsRestClient {
             return RestfulResponseUtil.createResponseResult(response);
         } catch (IOException e) {
             e.printStackTrace();
+            logger.error("Es Http request error!");
             return null;
         } finally {
             if (elasticSearchClient != null) {

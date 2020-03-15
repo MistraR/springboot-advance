@@ -1,7 +1,7 @@
 package com.advance.mistra.plugin.es.pool;
 
-import com.advance.mistra.plugin.es.RestfulResponseUtil;
 import com.advance.mistra.plugin.es.autowired.ElasticSearchPoolConfig;
+import com.advance.mistra.plugin.es.util.RestfulResponseUtil;
 import org.apache.commons.pool2.KeyedPooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
@@ -16,6 +16,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.advance.mistra.common.SystemConstans.GET;
+import static com.advance.mistra.common.SystemConstans.SLASH;
 
 /**
  * @author Mistra
@@ -101,7 +104,7 @@ public class ElasticSearchPoolFactory implements KeyedPooledObjectFactory<String
         }
         RestClient restClient = elasticSearchClient.getRestClient();
         try {
-            Response response = restClient.performRequest(new Request("GET", "/"));
+            Response response = restClient.performRequest(new Request(GET, SLASH));
             int statusCode = response.getStatusLine().getStatusCode();
             return RestfulResponseUtil.isSuccessfulResponse(statusCode);
         } catch (Exception e) {

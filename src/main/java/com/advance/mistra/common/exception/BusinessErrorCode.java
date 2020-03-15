@@ -23,6 +23,10 @@ public class BusinessErrorCode {
      * 系统发生错误!
      */
     public static final int SYSTEM_ERROR = 500;
+    /**
+     * 操作ES失败
+     */
+    public static final int ES_ERROR = 600;
 
     /**
      * 请求参数为空!

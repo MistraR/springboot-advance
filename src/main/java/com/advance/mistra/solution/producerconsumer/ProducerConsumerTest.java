@@ -2,7 +2,6 @@ package com.advance.mistra.solution.producerconsumer;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.concurrent.*;
@@ -18,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @CSDN: https://blog.csdn.net/axela30w
  */
 @Slf4j
-@Component
+//@Component
 public class ProducerConsumerTest {
 
     /**

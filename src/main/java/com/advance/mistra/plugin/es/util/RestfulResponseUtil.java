@@ -1,4 +1,4 @@
-package com.advance.mistra.plugin.es;
+package com.advance.mistra.plugin.es.util;
 
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpStatus;
@@ -6,6 +6,8 @@ import org.apache.http.util.EntityUtils;
 import org.elasticsearch.client.Response;
 
 import java.io.IOException;
+
+import static com.advance.mistra.common.SystemConstans.*;
 
 /**
  * @author Mistra
@@ -34,9 +36,9 @@ public class RestfulResponseUtil {
             throw new IllegalArgumentException("非法的响应请求体!");
         }
         JSONObject result = new JSONObject();
-        result.put("code", response.getStatusLine().getStatusCode());
-        result.put("message", response.getStatusLine().getReasonPhrase());
-        result.put("data", EntityUtils.toString(response.getEntity()));
+        result.put(CODE, response.getStatusLine().getStatusCode());
+        result.put(MSG, response.getStatusLine().getReasonPhrase());
+        result.put(DATA, EntityUtils.toString(response.getEntity()));
         return result;
     }
 }

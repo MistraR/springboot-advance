@@ -49,6 +49,73 @@ public class ElasticSearchPoolConfig extends GenericKeyedObjectPoolConfig {
         this.defaultCluster = defaultCluster;
     }
 
+    public boolean isTestOnBorrow() {
+        return testOnBorrow;
+    }
+
+    @Override
+    public void setTestOnBorrow(boolean testOnBorrow) {
+        this.testOnBorrow = testOnBorrow;
+    }
+
+    public boolean isTestwhileIdle() {
+        return testwhileIdle;
+    }
+
+    public void setTestwhileIdle(boolean testwhileIdle) {
+        this.testwhileIdle = testwhileIdle;
+    }
+
+    @Override
+    public int getMinIdlePerKey() {
+        return minIdlePerKey;
+    }
+
+    @Override
+    public void setMinIdlePerKey(int minIdlePerKey) {
+        this.minIdlePerKey = minIdlePerKey;
+    }
+
+    @Override
+    public int getMaxIdlePerKey() {
+        return maxIdlePerKey;
+    }
+
+    @Override
+    public void setMaxIdlePerKey(int maxIdlePerKey) {
+        this.maxIdlePerKey = maxIdlePerKey;
+    }
+
+    @Override
+    public int getMaxTotalPerKey() {
+        return maxTotalPerKey;
+    }
+
+    @Override
+    public void setMaxTotalPerKey(int maxTotalPerKey) {
+        this.maxTotalPerKey = maxTotalPerKey;
+    }
+
+    @Override
+    public int getMaxTotal() {
+        return maxTotal;
+    }
+
+    @Override
+    public void setMaxTotal(int maxTotal) {
+        this.maxTotal = maxTotal;
+    }
+
+    @Override
+    public long getMaxWaitMillis() {
+        return maxWaitMillis;
+    }
+
+    @Override
+    public void setMaxWaitMillis(long maxWaitMillis) {
+        this.maxWaitMillis = maxWaitMillis;
+    }
+
     @Override
     public boolean getTestOnReturn() {
         return testOnReturn;
@@ -57,6 +124,14 @@ public class ElasticSearchPoolConfig extends GenericKeyedObjectPoolConfig {
     @Override
     public void setTestOnReturn(boolean testOnReturn) {
         this.testOnReturn = testOnReturn;
+    }
+
+    public boolean isTestOnReturn() {
+        return testOnReturn;
+    }
+
+    public boolean isTestOnCreate() {
+        return testOnCreate;
     }
 
     @Override

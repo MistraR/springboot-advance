@@ -21,7 +21,6 @@ public class ElasticSearchPool {
 
     private static final Logger logger = LoggerFactory.getLogger(ElasticSearchPool.class);
 
-
     private volatile static GenericKeyedObjectPool<String, ElasticSearchClient> elasticSearchPool;
 
     private static String DEFAULT_CLUSTER = "";
