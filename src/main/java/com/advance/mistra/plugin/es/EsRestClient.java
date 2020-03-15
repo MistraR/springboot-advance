@@ -60,6 +60,15 @@ public class EsRestClient {
         return doDeleteByJson(url, null);
     }
 
+    /**
+     * 在连接池获取连接，执行请求，最后释放连接
+     *
+     * @param methodName
+     * @param url
+     * @param param
+     * @return
+     * @throws IOException
+     */
     private JSONObject sendRequest(String methodName, String url, String param) throws IOException {
         if (StringUtils.isEmpty(methodName) || StringUtils.isEmpty(url)) {
             throw new IllegalArgumentException("Illegal argument!");
