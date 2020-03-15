@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,11 +42,11 @@ public class ElasticSearchController extends EsBaseService {
     private static String esType = "group";
 
     @ApiOperation(value = "Es查询", notes = "Es查询", response = ResponseResult.class)
-    @GetMapping(value = "/get")
+    @GetMapping(value = "/get/{id}")
     @MistraResponse
-    public JSONObject get() throws IOException {
+    public JSONObject get(@PathVariable String id) throws IOException {
         Map<String, Object> params = new HashMap<>();
-        params.put("id", "2");
+        params.put("id", id);
         String param = FreemakerUtil.generateEsJson(params, esTemplatePath);
         return super.getEsDataListAndAggs(esRestClient, param, esIndex, esType);
     }
