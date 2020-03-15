@@ -38,14 +38,15 @@ public class ElasticSearchController extends EsBaseService {
 
     private static String esTemplatePath = "/esInterface/selectbyIdParam.ftl";
     private static String esIndex = "get-together";
+    private static String esType = "group";
 
-    @ApiOperation(value = "get", notes = "get", response = ResponseResult.class)
+    @ApiOperation(value = "Es查询", notes = "Es查询", response = ResponseResult.class)
     @GetMapping(value = "/get")
     @MistraResponse
     public JSONObject get() throws IOException {
         Map<String, Object> params = new HashMap<>();
         params.put("id", "2");
         String param = FreemakerUtil.generateEsJson(params, esTemplatePath);
-        return super.getEsDataListAndAggs(esRestClient, param, esIndex, "group");
+        return super.getEsDataListAndAggs(esRestClient, param, esIndex, esType);
     }
 }
