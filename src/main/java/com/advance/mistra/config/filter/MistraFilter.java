@@ -21,13 +21,14 @@ public class MistraFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        log.info("MistraFilter过滤器初始化完成！");
+        log.info(">>>>>>>>>>>>>>>>>>>>>> MistraFilter过滤器初始化完成！");
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         log.info(">>>>>>>>>>>>>>>>>>>>>> {}请求进入MistraFilter过滤器 <<<<<<<<<<<<<<<<<<<<<<", ((HttpServletRequest) servletRequest).getRequestURI());
         // 进行参数过滤，身份验证等等操作
+
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
