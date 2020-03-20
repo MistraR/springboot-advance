@@ -46,3 +46,6 @@ spring:
 mistra:
   elasticsearch:
     es-url: http://localhost:9200
+  filter:
+    exclusions:
+      - /knife4j/*
