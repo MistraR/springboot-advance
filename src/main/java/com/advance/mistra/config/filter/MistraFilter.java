@@ -27,7 +27,8 @@ public class MistraFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         log.info(">>>>>>>>>>>>>>>>>>>>>> {}请求进入MistraFilter过滤器 <<<<<<<<<<<<<<<<<<<<<<", ((HttpServletRequest) servletRequest).getRequestURI());
-
+        // 进行参数过滤，身份验证等等操作
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override
