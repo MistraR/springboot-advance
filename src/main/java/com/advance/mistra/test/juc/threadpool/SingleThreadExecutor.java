@@ -16,7 +16,7 @@ public class SingleThreadExecutor {
 
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newSingleThreadExecutor();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
             executorService.execute(new Task());
         }
     }
