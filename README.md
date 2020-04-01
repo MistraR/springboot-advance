@@ -23,7 +23,8 @@
 
  ### Code
  * com.advance.mistra.solution.producerconsumer：生产者消费者模型
- * com.advance.mistra.test.juc：JUC各种并发类使用姿势
+ * com.advance.mistra.test.juc：*JUC* 各种并发工具使用姿势以及源码解读
+   * 锁，并发集合，并发队列，线程池，原子类，CAS，AQS
  
  
  
