@@ -1,4 +1,4 @@
-package com.advance.mistra.test.juc.lock;
+package com.advance.mistra.test.juc.lock.reentrantlock;
 
 import java.util.Random;
 import java.util.concurrent.locks.Lock;
