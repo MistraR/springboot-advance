@@ -17,7 +17,7 @@ import java.util.UUID;
  * @author Mistra
  * @ Version: 1.0
  * @ Time: 2020/4/7 22:04
- * @ Description: 导出Word，Word包含富文本，处理工具类
+ * @ Description: 导出Word，Word包含富文本，处理工具类，参考博客：https://blog.csdn.net/yz357823669/article/details/80840855
  * @ Copyright (c) Mistra,All Rights Reserved.
  * @ Github: https://github.com/MistraR
  * @ CSDN: https://blog.csdn.net/axela30w
@@ -43,7 +43,7 @@ public class RichHtmlHandlerUtil {
     }
 
     public String getHandledDocBodyBlock() {
-        String raw = WordHtmlGeneratorHelper.string2Ascii(doc.getElementsByTag("body").html());
+        String raw = WordHtmlGenerator.string2Ascii(doc.getElementsByTag("body").html());
         return raw.replace("=3D", "=").replace("=", "=3D");
     }
 
@@ -69,7 +69,7 @@ public class RichHtmlHandlerUtil {
     }
 
     /**
-     * 获得已经处理过的HTML文件
+     * 处理富文本HTML文件
      *
      * @throws IOException
      */
@@ -79,14 +79,14 @@ public class RichHtmlHandlerUtil {
         if (imags == null || imags.size() == 0) {
             return;
         }
-        // 转换成word mht 能识别图片标签内容，去替换html中的图片标签
+        // 转换成mht能识别的图片标签内容，去替换html中的图片标签
         for (Element item : imags) {
-            // 把图片文件取出来
+            // 把图片文件地址取出来
             String srcRealPath = item.attr("src");
             File imageFile = new File(srcRealPath);
-            String imageFielShortName = imageFile.getName();
-            String fileTypeName = RichHtmlImageHandler.getFileSuffix(srcRealPath);
-            String docFileName = "image" + UUID.randomUUID().toString() + "." + fileTypeName;
+            String imageFielName = imageFile.getName();
+            String fileSuffix = RichHtmlImageHandler.getFileSuffix(srcRealPath);
+            String docFileName = "image" + UUID.randomUUID().toString() + "." + fileSuffix;
             String srcLocationShortName = docSrcParent + "/" + docFileName;
             String styleAttr = item.attr("style");
             String imagHeightStr = item.attr("height");
@@ -100,7 +100,7 @@ public class RichHtmlHandlerUtil {
             imagHeightStr = imagHeightStr.replace("px", "");
             imagWidthStr = imagWidthStr.replace("px", "");
             if (StringUtils.isEmpty(imagHeightStr)) {
-                //去得到默认的文件高度
+                // 去得到默认的文件高度
                 imagHeightStr = "0";
             }
             if (StringUtils.isEmpty(imagWidthStr)) {
@@ -110,18 +110,18 @@ public class RichHtmlHandlerUtil {
             int imageWidth = Integer.parseInt(imagWidthStr);
             // 得到文件的word mht的body块
             String handledDocBodyBlock = RichHtmlImageHandler.toDocBodyBlock(srcRealPath,
-                    imageFielShortName, imageHeight, imageWidth, styleAttr,
+                    imageFielName, imageHeight, imageWidth, styleAttr,
                     srcLocationShortName, shapeidPrex, spidPrex, typeid);
-            //这里的顺序有点问题：应该是替换item，而不是整个后面追加
-            //doc.rreplaceAll(item.toString(), handledDocBodyBlock);
+            // 这里的顺序有点问题：应该是替换item，而不是整个后面追加
+            // doc.rreplaceAll(item.toString(), handledDocBodyBlock);
             item.after(handledDocBodyBlock);
-//			item.parent().append(handledDocBodyBlock);
+            // item.parent().append(handledDocBodyBlock);
             item.remove();
             // 去替换原生的html中的imag
             String base64Content = RichHtmlImageHandler.imageToBase64(srcRealPath);
             String contextLoacation = docSrcLocationPrex + "/" + docSrcParent + "/" + docFileName;
             String docBase64BlockResult = RichHtmlImageHandler.generateImageBase64Block(nextPartId, contextLoacation,
-                    fileTypeName, base64Content);
+                    fileSuffix, base64Content);
             docBase64BlockResults.add(docBase64BlockResult);
             String imagXMLHref = "<o:File HRef=3D\"" + docFileName + "\"/>";
             xmlImgRefs.add(imagXMLHref);
@@ -143,6 +143,5 @@ public class RichHtmlHandlerUtil {
         }
         return "";
     }
-
 
 }
