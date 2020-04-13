@@ -14,7 +14,7 @@ import java.util.Map;
  * @author Mistra
  * @ Version: 1.0
  * @ Time: 2020/4/7 23:09
- * @ Description: word导出帮助类 通过freemarker模板引擎来实现
+ * @ Description: word导出帮助类 通过freemarker模板引擎来实现。参考博客：https://blog.csdn.net/yz357823669/article/details/80840855
  * @ Copyright (c) Mistra,All Rights Reserved.
  * @ Github: https://github.com/MistraR
  * @ CSDN: https://blog.csdn.net/axela30w

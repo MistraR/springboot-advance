@@ -13,7 +13,7 @@ import java.util.UUID;
  * @ Version: 1.0
  * @ Time: 2020/4/7 23:00
  * @ Description: 文档图片转换器
- * @ Copyright (c) Mistra,All Rights Reserved.
+ * @ Copyright (c) Mistra,All Rights Reserved.参考博客：https://blog.csdn.net/yz357823669/article/details/80840855
  * @ Github: https://github.com/MistraR
  * @ CSDN: https://blog.csdn.net/axela30w
  */
