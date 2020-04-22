@@ -72,4 +72,9 @@ public class JpaUser {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private JpaRole role;
+
+    public JpaUser(String userName) {
+        super();
+        this.userName =userName;
+    }
 }
