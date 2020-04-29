@@ -1,5 +1,7 @@
 package com.advance.mistra.utils.http;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.text.Normalizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,8 +17,27 @@ import java.util.regex.Pattern;
  */
 public class IpValidatedUtil {
 
+    private static final String COLON = ":";
+    private static final String DOUBLE_COLON = "::";
+    private static final String EMPTY_STRING = "";
+    private static final String FOUR_ZERO = "0000";
+    private static final String LOOP_ADDRESS = "0000:0000:0000:0000:0000:0000:0000:0000";
+    private static final String[] BINARYARRAY = {"0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111",
+            "1000", "1001", "1010", "1011", "1100", "1101", "1110", "1111"};
+
 
     public static void main(String[] args) {
+//        validatIPv6();
+        baseConversion("e");
+
+
+    }
+
+
+    /**
+     * ipv6 验证
+     */
+    public static void validatIPv6() {
         String IPV6SEG = "^([0-9A-Fa-f]{0,4}:){2,7}([0-9A-Fa-f]{1,4}$|((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4})$";
         String s = "([A-Fa-f0-9]{0,4}::?){2,7}[A-Fa-f0-9]{1,4}";
         String s1 = "::?";
@@ -67,7 +88,7 @@ public class IpValidatedUtil {
      * @return
      */
     public static boolean isValidIpv6Addr(String ipAddr) {
-                String regex = "(^((([0-9A-Fa-f]{1,4}:){7}(([0-9A-Fa-f]{1,4}){1}|:))"
+        String regex = "(^((([0-9A-Fa-f]{1,4}:){7}(([0-9A-Fa-f]{1,4}){1}|:))"
                 + "|(([0-9A-Fa-f]{1,4}:){6}((:[0-9A-Fa-f]{1,4}){1}|"
                 + "((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|"
                 + "([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|"
@@ -135,4 +156,192 @@ public class IpValidatedUtil {
         return true;
     }
 
+    private static String hexStr = "0123456789ABCDEF";
+
+
+    /**
+     * 进制转换测试
+     *
+     * @param str
+     */
+    public static void baseConversion(String str) {
+        System.out.println("源字符串：" + str);
+        String hexString = binaryToHexString(str.getBytes());
+        System.out.println("转换为十六进制：" + hexString);
+        System.out.println("转换为二进制：" + bytes2BinaryStr(str.getBytes()));
+        byte[] bArray = hexStringToBinary(hexString);
+        System.out.println("将str的十六进制文件转换为二进制再转为String：" + new String(bArray));
+
+        System.out.println(bytes2BinaryStr(hexStringToBinary(str)));
+    }
+
+    public static byte[] parseHexStr2Byte(String hexStr) {
+        if (hexStr.length() < 1)
+            return null;
+        byte[] result = new byte[hexStr.length() / 2];
+        for (int i = 0; i < hexStr.length() / 2; i++) {
+            int high = Integer.parseInt(hexStr.substring(i * 2, i * 2 + 1), 16);
+            int low = Integer.parseInt(hexStr.substring(i * 2 + 1, i * 2 + 2),
+                    16);
+            result[i] = (byte) (high * 16 + low);
+        }
+        return result;
+    }
+
+    /**
+     * 字节数组转换为二进制字符串
+     *
+     * @param bArray 字节数组
+     * @return 二进制字符串
+     */
+    public static String bytes2BinaryStr(byte[] bArray) {
+        StringBuilder outStr = new StringBuilder(EMPTY_STRING);
+        int pos = 0;
+        for (byte b : bArray) {
+            // 高四位
+            pos = (b & 0xF0) >> 4;
+            outStr.append(BINARYARRAY[pos]);
+            // 低四位
+            pos = b & 0x0F;
+            outStr.append(BINARYARRAY[pos]);
+        }
+        return outStr.toString();
+    }
+
+    /**
+     * 将二进制转换为十六进制字符串
+     *
+     * @param bytes 二进制字节数组
+     * @return 十六进制字符串
+     */
+    public static String binaryToHexString(byte[] bytes) {
+        StringBuilder result = new StringBuilder(EMPTY_STRING);
+        String hex = EMPTY_STRING;
+        for (int i = 0; i < bytes.length; i++) {
+            // 字节高4位
+            hex = String.valueOf(hexStr.charAt((bytes[i] & 0xF0) >> 4));
+            // 字节低4位
+            hex += String.valueOf(hexStr.charAt(bytes[i] & 0x0F));
+            result.append(hex);
+        }
+        return result.toString();
+    }
+
+    /**
+     * 将十六进制转换为字节数组
+     *
+     * @param hexString 十六进制字符串
+     * @return 二进制字节数组
+     */
+    public static byte[] hexStringToBinary(String hexString) {
+        // hexString的长度对2取整，作为bytes的长度
+        int len = hexString.length() / 2;
+        byte[] bytes = new byte[len];
+        // 字节高四位
+        byte high = 0;
+        // 字节低四位
+        byte low = 0;
+        for (int i = 0; i < len; i++) {
+            // 右移四位得到高位
+            high = (byte) ((hexStr.indexOf(hexString.charAt(2 * i))) << 4);
+            low = (byte) hexStr.indexOf(hexString.charAt(2 * i + 1));
+            // 高地位做或运算
+            bytes[i] = (byte) (high | low);
+        }
+        return bytes;
+    }
+
+    /**
+     * 将非简写的IPv6 转换成 简写的IPv6
+     *
+     * @param fullIPv6 非简写的IPv6
+     * @return 简写的IPv6
+     */
+    public static String parseFullIPv6ToAbbreviation(String fullIPv6) {
+        String abbreviation = EMPTY_STRING;
+        // 1,校验 ":" 的个数 不等于7  或者长度不等于39  直接返回空串
+        int count = fullIPv6.length() - fullIPv6.replaceAll(COLON, EMPTY_STRING).length();
+        if (fullIPv6.length() != 39 || count != 7) {
+            return abbreviation;
+        }
+        // 2,去掉每一位前面的0
+        String[] arr = fullIPv6.split(COLON);
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].replaceAll("^0{1,3}", EMPTY_STRING);
+        }
+        // 3,找到最长的连续的0
+        String[] arr2 = arr.clone();
+        for (int i = 0; i < arr2.length; i++) {
+            if (!"0".equals(arr2[i])) {
+                arr2[i] = "-";
+            }
+        }
+        Pattern pattern = Pattern.compile("0{2,}");
+        Matcher matcher = pattern.matcher(StringUtils.join(arr2, EMPTY_STRING));
+        String maxStr = EMPTY_STRING;
+        int start = -1;
+        int end = -1;
+        while (matcher.find()) {
+            if (maxStr.length() < matcher.group().length()) {
+                maxStr = matcher.group();
+                start = matcher.start();
+                end = matcher.end();
+            }
+        }
+        // 4,合并        
+        if (maxStr.length() > 0) {
+            for (int i = start; i < end; i++) {
+                arr[i] = COLON;
+            }
+        }
+        abbreviation = StringUtils.join(arr, COLON);
+        abbreviation = abbreviation.replaceAll(":{2,}", DOUBLE_COLON);
+        return abbreviation;
+    }
+
+    /**
+     * 将简写的IPv6 转换成 非简写的IPv6
+     *
+     * @param abbreviation 简写的IPv6
+     * @return 非简写的IPv6
+     */
+    public static String parseAbbreviationToFullIPv6(String abbreviation) {
+        if (DOUBLE_COLON.equals(abbreviation)) {
+            return LOOP_ADDRESS;
+        }
+        String[] arr = new String[]{FOUR_ZERO, FOUR_ZERO, FOUR_ZERO, FOUR_ZERO, FOUR_ZERO, FOUR_ZERO, FOUR_ZERO, FOUR_ZERO};
+        if (abbreviation.startsWith(DOUBLE_COLON)) {
+            String[] temp = abbreviation.substring(2).split(COLON);
+            for (int i = 0; i < temp.length; i++) {
+                String tempStr = FOUR_ZERO + temp[i];
+                arr[i + 8 - temp.length] = tempStr.substring(tempStr.length() - 4);
+            }
+        } else if (abbreviation.endsWith(DOUBLE_COLON)) {
+            String[] temp = abbreviation.substring(0, abbreviation.length() - 2).split(COLON);
+            for (int i = 0; i < temp.length; i++) {
+                String tempStr = FOUR_ZERO + temp[i];
+                arr[i] = tempStr.substring(tempStr.length() - 4);
+            }
+        } else if (abbreviation.contains(DOUBLE_COLON)) {
+            String[] tempArr = abbreviation.split(DOUBLE_COLON);
+
+            String[] temp0 = tempArr[0].split(COLON);
+            for (int i = 0; i < temp0.length; i++) {
+                String tempStr = FOUR_ZERO + temp0[i];
+                arr[i] = tempStr.substring(tempStr.length() - 4);
+            }
+            String[] temp1 = tempArr[1].split(COLON);
+            for (int i = 0; i < temp1.length; i++) {
+                String tempStr = FOUR_ZERO + temp1[i];
+                arr[i + 8 - temp1.length] = tempStr.substring(tempStr.length() - 4);
+            }
+        } else {
+            String[] tempArr = abbreviation.split(COLON);
+            for (int i = 0; i < tempArr.length; i++) {
+                String tempStr = FOUR_ZERO + tempArr[i];
+                arr[i] = tempStr.substring(tempStr.length() - 4);
+            }
+        }
+        return StringUtils.join(arr, COLON);
+    }
 }
