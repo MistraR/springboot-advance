@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Mistra
  * @ Version: 1.0
  * @ Time: 2020/3/26 21:15
- * @ Description:
+ * @ Description: 演示AtomicInteger的基本用法，对比非原子类的线程安全问题，使用了原子类之后，不需要加锁，也可以保证线程安全。
  * @ Copyright (c) Mistra,All Rights Reserved.
  * @ Github: https://github.com/MistraR
  * @ CSDN: https://blog.csdn.net/axela30w
