@@ -17,7 +17,7 @@
  ### 中间件集成：
  * com.advance.mistra.config.MybatisPlusConfig：集成Mybatis-plus
  * com.advance.mistra.plugin.es：集成ElasticSearch
- * com.advance.mistra.plugin.kafka：集成Kafka
+ * com.advance.mistra.plugin.kafka：集成Kafka       启动服务默认需要连接本地的Kafka和Es。
  * com.advance.mistra.utils.excel：集成EasyExcel
  
 
@@ -29,7 +29,7 @@
  
  
  
- 
+
  
  ---
  
