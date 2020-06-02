@@ -26,7 +26,7 @@ public class SpringbootAdvanceApplication extends BaseApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringbootAdvanceApplication.class, args);
-        log.info("Application run success!");
+        log.info("SpringbootAdvanceApplication run success!");
     }
 
 }
