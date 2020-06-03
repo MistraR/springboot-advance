@@ -20,6 +20,6 @@ public class GatePorter {
     public static final List<String> task = new ArrayList<>();
 
     public void execute() {
-        task.forEach(s -> System.out.println(s));
+        task.forEach(System.out::println);
     }
 }
