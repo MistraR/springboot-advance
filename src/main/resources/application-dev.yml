@@ -3,8 +3,8 @@ swagger:
 
 spring:
   kafka:
-    servers: localhost:9092
-    bootstrap-servers: localhost:9092
+    servers: 139.155.4.123:9092
+    bootstrap-servers: 139.155.4.123:9092
     clientId: client1
     client-id: client1
     producer:
@@ -45,7 +45,7 @@ spring:
 
 mistra:
   elasticsearch:
-    es-url: http://localhost:9200
+    es-url: http://139.155.4.123:9200
   filter:
     exclusions:
       - /knife4j/*

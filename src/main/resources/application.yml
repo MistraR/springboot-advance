@@ -7,8 +7,8 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://112.74.38.117:3306/springboot?useUnicode=true&characterEncoding=utf-8
-    username: mistra
+    url: jdbc:mysql://139.155.4.123:3306/springboot?useUnicode=true&characterEncoding=utf-8
+    username: root
     password: 123456
     # 初始化大小，最小，最大
     druid:
