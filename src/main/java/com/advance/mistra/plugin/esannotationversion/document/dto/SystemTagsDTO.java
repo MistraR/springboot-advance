@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import com.advance.mistra.plugin.esannotationversion.annotation.EsQueryField;
 import com.advance.mistra.utils.date.JodaDateTimeDeserializer;
 import com.advance.mistra.utils.date.JodaDateTimeSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -157,6 +158,7 @@ public class SystemTagsDTO {
      * 微信唯一id
      */
     @Field(type = FieldType.Keyword)
+    @EsQueryField(nestedPath = "basic")
     private String wechatUnionId;
 
     /**
@@ -169,12 +171,13 @@ public class SystemTagsDTO {
      * 是否是真实用户
      */
     @Field(type = FieldType.Boolean)
+    @EsQueryField(nestedPath = "basic")
     private Boolean real;
 
     /**
      * 连续包月
      */
-    @Field(type = FieldType.Object)
+    @Field(type = FieldType.Nested)
     private CyclePayDTO cyclePay;
 
     /**
@@ -198,6 +201,6 @@ public class SystemTagsDTO {
     /**
      * 冻结信息
      */
-    @Field(type = FieldType.Object)
+    @Field(type = FieldType.Nested)
     private FreezeInfoDTO freezeInfo;
 }

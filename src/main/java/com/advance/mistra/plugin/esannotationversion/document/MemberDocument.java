@@ -32,7 +32,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-@Document(indexName = "member", type = "_doc")
+@Document(indexName = "member", type = "type")
 @EsQueryField(key = "page", type = EsQueryTypeEnum.IGNORE)
 @EsQueryField(key = "size", type = EsQueryTypeEnum.IGNORE)
 @EsQueryField(key = "q", type = EsQueryTypeEnum.FULLTEXT)
@@ -43,31 +43,29 @@ public class MemberDocument {
      */
     @Id
     @EsQueryField(type = EsQueryTypeEnum.IN)
-    @EsQueryField(key = "id", type = EsQueryTypeEnum.IN)
     @Field(type = FieldType.Long)
     private Long id;
 
     @EsQueryField(type = EsQueryTypeEnum.IN)
-    @EsQueryField(key = "id", type = EsQueryTypeEnum.IN)
     @Field(type = FieldType.Long)
     private Long userId;
 
     /**
      * 基础信息
      */
-    @Field(type = FieldType.Object)
-    private UserBasicDTO userBasicDTO;
+    @Field(type = FieldType.Nested)
+    private UserBasicDTO basic;
 
     /**
      * 系统标签
      */
-    @Field(type = FieldType.Object)
+    @Field(type = FieldType.Nested)
     private SystemTagsDTO tags;
 
     /**
      * 手动标签
      */
-    @Field(type = FieldType.Object)
+    @Field(type = FieldType.Nested)
     private ManualTagsDTO manualTags;
 
     @Field(type = FieldType.Keyword)

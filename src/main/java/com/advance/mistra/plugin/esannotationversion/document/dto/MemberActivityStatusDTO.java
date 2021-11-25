@@ -1,5 +1,7 @@
 package com.advance.mistra.plugin.esannotationversion.document.dto;
 
+import com.advance.mistra.plugin.esannotationversion.annotation.EsQueryField;
+import com.advance.mistra.plugin.esannotationversion.enums.EsQueryTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +25,7 @@ public class MemberActivityStatusDTO {
      * 活动code
      */
     @Field(type = FieldType.Keyword)
+    @EsQueryField(type = EsQueryTypeEnum.IN, nestedPath = "tags.activity")
     private String activityCode;
 
     /**

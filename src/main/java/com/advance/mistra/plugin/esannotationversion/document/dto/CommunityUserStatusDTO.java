@@ -2,6 +2,8 @@ package com.advance.mistra.plugin.esannotationversion.document.dto;
 
 import java.util.List;
 
+import com.advance.mistra.plugin.esannotationversion.annotation.EsQueryField;
+import com.advance.mistra.plugin.esannotationversion.enums.EsQueryTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +29,7 @@ public class CommunityUserStatusDTO {
      * 社群ID
      */
     @Field(type = FieldType.Long)
+    @EsQueryField(type = EsQueryTypeEnum.IN, nestedPath = "tags.community")
     private Long communityId;
 
     /**
@@ -39,6 +42,7 @@ public class CommunityUserStatusDTO {
      * 状态
      */
     @Field(type = FieldType.Keyword)
+    @EsQueryField(type = EsQueryTypeEnum.IN, nestedPath = "tags.community")
     private String status;
 
     /**

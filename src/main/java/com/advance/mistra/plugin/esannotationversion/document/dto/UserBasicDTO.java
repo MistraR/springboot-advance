@@ -37,28 +37,28 @@ public class UserBasicDTO {
      * 昵称
      */
     @Field(type = FieldType.Keyword)
-    @EsQueryField(type = EsQueryTypeEnum.FUZZY)
-    @EsQueryField(key = "name", type = EsQueryTypeEnum.SHOULD)
+    @EsQueryField(type = EsQueryTypeEnum.FUZZY, nestedPath = "basic")
     private String nickName;
 
     /**
      * 微信昵称
      */
     @Field(type = FieldType.Keyword)
+    @EsQueryField(type = EsQueryTypeEnum.FUZZY, nestedPath = "basic")
     private String wechatNickname;
 
     /**
      * 脱敏手机号
      */
     @Field(type = FieldType.Keyword)
+    @EsQueryField(type = EsQueryTypeEnum.FUZZY, nestedPath = "basic")
     private String maskedPhoneNumber;
 
     /**
      * 顾问邮箱
      */
     @Field(type = FieldType.Keyword)
-    @EsQueryField(type = EsQueryTypeEnum.FUZZY)
-    @EsQueryField(key = "consultantEmail", type = EsQueryTypeEnum.SHOULD)
+    @EsQueryField(type = EsQueryTypeEnum.EQUAL, nestedPath = "basic")
     private String consultantEmail;
 
     /**
@@ -97,7 +97,6 @@ public class UserBasicDTO {
     @Field(type = FieldType.Date)
     @JsonDeserialize(using = JodaDateTimeDeserializer.class)
     @JsonSerialize(using = JodaDateTimeSerializer.class)
-    @EsQueryField(type = EsQueryTypeEnum.RANGE)
     private Date firstMemberDay;
 
     /**
@@ -106,7 +105,7 @@ public class UserBasicDTO {
     @Field(type = FieldType.Date)
     @JsonDeserialize(using = JodaDateTimeDeserializer.class)
     @JsonSerialize(using = JodaDateTimeSerializer.class)
-    @EsQueryField(type = EsQueryTypeEnum.RANGE)
+    @EsQueryField(type = EsQueryTypeEnum.RANGE, nestedPath = "basic")
     private Date memberExpireDay;
 
     /**
@@ -115,14 +114,14 @@ public class UserBasicDTO {
     @Field(type = FieldType.Date)
     @JsonDeserialize(using = JodaDateTimeDeserializer.class)
     @JsonSerialize(using = JodaDateTimeSerializer.class)
-    @EsQueryField(type = EsQueryTypeEnum.RANGE)
+    @EsQueryField(type = EsQueryTypeEnum.RANGE, nestedPath = "basic")
     private Date registerTime;
 
     /**
      * 是否加了微信
      */
     @Field(type = FieldType.Boolean)
-    @EsQueryField()
+    @EsQueryField
     private Boolean wechatAdded;
 
     /**
@@ -147,7 +146,7 @@ public class UserBasicDTO {
      * 顾问名称
      */
     @Field(type = FieldType.Keyword)
-    @EsQueryField(type = EsQueryTypeEnum.FUZZY)
+    @EsQueryField
     private String consultantName;
 
     /**
