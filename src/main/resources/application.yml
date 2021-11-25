@@ -78,7 +78,7 @@ index-entity:
   entities:
     - indexName: member
       type: type
-      documentClassPath: com.advance.mistra.plugin.esv2.document.MemberDocument
+      documentClassPath: com.advance.mistra.plugin.esannotationversion.document.MemberDocument
 
 
 
