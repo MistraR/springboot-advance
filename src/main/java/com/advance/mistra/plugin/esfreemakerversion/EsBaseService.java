@@ -1,4 +1,4 @@
-package com.advance.mistra.plugin.es;
+package com.advance.mistra.plugin.esfreemakerversion;
 
 import com.advance.mistra.common.exception.BusinessErrorCode;
 import com.advance.mistra.common.exception.BusinessException;

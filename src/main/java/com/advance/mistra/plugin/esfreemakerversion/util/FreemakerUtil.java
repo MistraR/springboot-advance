@@ -1,4 +1,4 @@
-package com.advance.mistra.plugin.es.util;
+package com.advance.mistra.plugin.esfreemakerversion.util;
 
 import freemarker.core.ParseException;
 import freemarker.template.*;

@@ -2,9 +2,9 @@ package com.advance.mistra.controller;
 
 import com.advance.mistra.common.response.ResponseResult;
 import com.advance.mistra.common.response.annotation.MistraResponse;
-import com.advance.mistra.plugin.es.EsBaseService;
-import com.advance.mistra.plugin.es.EsRestClient;
-import com.advance.mistra.plugin.es.util.FreemakerUtil;
+import com.advance.mistra.plugin.esfreemakerversion.EsBaseService;
+import com.advance.mistra.plugin.esfreemakerversion.EsRestClient;
+import com.advance.mistra.plugin.esfreemakerversion.util.FreemakerUtil;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -1,12 +1,12 @@
 package com.advance.mistra.common.exception;
 
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @Author: Mistra
@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Slf4j
 @Data
-public class BusinessException extends RuntimeException{
+public class BusinessException extends RuntimeException {
 
     private static final long serialVersionUID = 7716403813814830930L;
 
@@ -30,15 +30,26 @@ public class BusinessException extends RuntimeException{
         super(messageCode);
     }
 
+    /**
+     * 构建异常
+     *
+     * @return ApiException
+     */
+    public static BusinessException build(int messageCode) {
+        return new BusinessException(messageCode);
+    }
+
     public BusinessException(int messageCode) {
         super(getCodeMessage(messageCode));
         this.code = messageCode;
     }
-    public BusinessException(int messageCode,Object... args) {
+
+    public BusinessException(int messageCode, Object... args) {
         super(getCodeMessage(messageCode));
         this.code = messageCode;
         this.args = args;
     }
+
     private static String getCodeMessage(int messageCode) {
         List<String> fieldName = new ArrayList<>();
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();

@@ -1,4 +1,4 @@
-package com.advance.mistra.plugin.es.autowired;
+package com.advance.mistra.plugin.esfreemakerversion.autowired;
 
 import com.advance.mistra.utils.http.RestfulUtil;
 import com.alibaba.fastjson.JSONObject;

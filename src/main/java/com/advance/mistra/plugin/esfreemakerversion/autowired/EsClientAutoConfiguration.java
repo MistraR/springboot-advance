@@ -1,4 +1,4 @@
-package com.advance.mistra.plugin.es.autowired;
+package com.advance.mistra.plugin.esfreemakerversion.autowired;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * @ CSDN: https://blog.csdn.net/axela30w
  */
 @Configuration
-@ComponentScan(basePackages = {"com.advance.mistra.plugin.es"})
+@ComponentScan(basePackages = {"com.advance.mistra.plugin.esfreemakerversion"})
 @EnableConfigurationProperties(ElasticSearchPoolConfig.class)
 public class EsClientAutoConfiguration {
 }

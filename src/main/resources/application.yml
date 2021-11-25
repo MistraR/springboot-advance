@@ -74,7 +74,11 @@ mybatis-plus:
     #配置JdbcTypeForNull
     jdbc-type-for-null: 'null'
 
-
+index-entity:
+  entities:
+    - indexName: member
+      type: type
+      documentClassPath: com.advance.mistra.plugin.esv2.document.MemberDocument
 
 
 

@@ -1,4 +1,4 @@
-package com.advance.mistra.plugin.es.autowired;
+package com.advance.mistra.plugin.esfreemakerversion.autowired;
 
 /**
  * @author Mistra

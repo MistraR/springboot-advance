@@ -1,7 +1,7 @@
 package com.advance.mistra;
 
 import com.advance.mistra.common.BaseApplication;
-import com.advance.mistra.plugin.es.autowired.EnableEsClientModule;
+import com.advance.mistra.plugin.esfreemakerversion.autowired.EnableEsClientModule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

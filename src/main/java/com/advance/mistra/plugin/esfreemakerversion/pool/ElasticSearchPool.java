@@ -1,6 +1,6 @@
-package com.advance.mistra.plugin.es.pool;
+package com.advance.mistra.plugin.esfreemakerversion.pool;
 
-import com.advance.mistra.plugin.es.autowired.ElasticSearchPoolConfig;
+import com.advance.mistra.plugin.esfreemakerversion.autowired.ElasticSearchPoolConfig;
 import org.apache.commons.pool2.impl.GenericKeyedObjectPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

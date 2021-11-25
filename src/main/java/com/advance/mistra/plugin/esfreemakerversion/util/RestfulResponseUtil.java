@@ -1,4 +1,4 @@
-package com.advance.mistra.plugin.es.util;
+package com.advance.mistra.plugin.esfreemakerversion.util;
 
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpStatus;

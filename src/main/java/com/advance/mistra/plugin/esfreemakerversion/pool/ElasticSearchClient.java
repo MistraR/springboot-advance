@@ -1,4 +1,4 @@
-package com.advance.mistra.plugin.es.pool;
+package com.advance.mistra.plugin.esfreemakerversion.pool;
 
 import org.elasticsearch.client.RestClient;
 

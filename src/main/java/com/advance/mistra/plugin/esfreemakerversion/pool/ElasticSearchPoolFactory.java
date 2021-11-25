@@ -1,7 +1,7 @@
-package com.advance.mistra.plugin.es.pool;
+package com.advance.mistra.plugin.esfreemakerversion.pool;
 
-import com.advance.mistra.plugin.es.autowired.ElasticSearchPoolConfig;
-import com.advance.mistra.plugin.es.util.RestfulResponseUtil;
+import com.advance.mistra.plugin.esfreemakerversion.autowired.ElasticSearchPoolConfig;
+import com.advance.mistra.plugin.esfreemakerversion.util.RestfulResponseUtil;
 import org.apache.commons.pool2.KeyedPooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;

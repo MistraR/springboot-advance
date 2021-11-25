@@ -1,9 +1,9 @@
-package com.advance.mistra.plugin.es;
+package com.advance.mistra.plugin.esfreemakerversion;
 
-import com.advance.mistra.plugin.es.pool.ElasticSearchClient;
-import com.advance.mistra.plugin.es.pool.ElasticSearchPool;
-import com.advance.mistra.plugin.es.pool.ElasticSearchPoolFactory;
-import com.advance.mistra.plugin.es.util.RestfulResponseUtil;
+import com.advance.mistra.plugin.esfreemakerversion.pool.ElasticSearchClient;
+import com.advance.mistra.plugin.esfreemakerversion.pool.ElasticSearchPool;
+import com.advance.mistra.plugin.esfreemakerversion.pool.ElasticSearchPoolFactory;
+import com.advance.mistra.plugin.esfreemakerversion.util.RestfulResponseUtil;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
