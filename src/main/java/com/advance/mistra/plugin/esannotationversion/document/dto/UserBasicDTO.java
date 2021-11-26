@@ -31,7 +31,17 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 public class UserBasicDTO {
 
     @Field(type = FieldType.Long)
+    private Long city;
+
+    @Field(type = FieldType.Long)
     private Long accountId;
+
+    /**
+     * 性别
+     */
+    @Field(type = FieldType.Keyword)
+    @EsQueryField(nestedPath = "basic")
+    private String gender;
 
     /**
      * 昵称

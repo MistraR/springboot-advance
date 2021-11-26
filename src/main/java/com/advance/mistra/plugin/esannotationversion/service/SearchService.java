@@ -15,12 +15,13 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
+
 import javax.annotation.Resource;
 
-import com.advance.mistra.plugin.esannotationversion.enums.EsQueryTypeEnum;
 import com.advance.mistra.plugin.esannotationversion.core.FieldDefinition;
 import com.advance.mistra.plugin.esannotationversion.core.Key;
 import com.advance.mistra.plugin.esannotationversion.core.MyBucket;
+import com.advance.mistra.plugin.esannotationversion.enums.EsQueryTypeEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.search.join.ScoreMode;
 import org.elasticsearch.action.search.SearchResponse;
@@ -33,6 +34,7 @@ import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.MultiBucketsAggregation;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
@@ -49,7 +51,7 @@ import org.springframework.util.CollectionUtils;
 @Service
 public class SearchService {
 
-    @Resource
+    @Autowired
     private ElasticsearchTemplate elasticsearchTemplate;
 
     /**
@@ -400,7 +402,7 @@ public class SearchService {
                 .setPostFilter(filterBuilder)
                 .setSize(1)
                 .get();
-        final long total = searchResponse.getHits().getTotalHits().value;
+        final long total = searchResponse.getHits().getTotalHits();
         if (total > 0) {
             return searchResponse.getHits().getAt(0).getSourceAsMap();
         }

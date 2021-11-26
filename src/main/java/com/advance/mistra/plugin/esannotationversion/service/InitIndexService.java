@@ -2,11 +2,11 @@ package com.advance.mistra.plugin.esannotationversion.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.annotation.Resource;
 
 import com.advance.mistra.plugin.esannotationversion.config.IndexConfigEntity;
 import com.advance.mistra.plugin.esannotationversion.config.IndexConfiguration;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.stereotype.Service;
 
@@ -18,13 +18,16 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class InitIndexService {
+public class InitIndexService implements CommandLineRunner {
 
-    @Resource
-    private IndexConfiguration indexEntity;
+    private final IndexConfiguration indexEntity;
 
-    @Resource
-    private ElasticsearchTemplate elasticsearchTemplate;
+    private final ElasticsearchTemplate elasticsearchTemplate;
+
+    public InitIndexService(IndexConfiguration indexEntity, ElasticsearchTemplate elasticsearchTemplate) {
+        this.indexEntity = indexEntity;
+        this.elasticsearchTemplate = elasticsearchTemplate;
+    }
 
     /**
      * 初始化索引
@@ -52,5 +55,10 @@ public class InitIndexService {
             return e.getMessage();
         }
         return true;
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+//        initIndex();
     }
 }

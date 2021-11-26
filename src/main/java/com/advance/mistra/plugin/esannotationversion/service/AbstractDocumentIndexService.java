@@ -31,11 +31,14 @@ import org.springframework.stereotype.Component;
 @Component
 public abstract class AbstractDocumentIndexService {
 
-    @Resource
-    private ElasticsearchTemplate elasticsearchTemplate;
+    private final ElasticsearchTemplate elasticsearchTemplate;
 
-    @Resource
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
+
+    public AbstractDocumentIndexService(ElasticsearchTemplate elasticsearchTemplate, ObjectMapper objectMapper) {
+        this.elasticsearchTemplate = elasticsearchTemplate;
+        this.objectMapper = objectMapper;
+    }
 
     /**
      * 更新索引
