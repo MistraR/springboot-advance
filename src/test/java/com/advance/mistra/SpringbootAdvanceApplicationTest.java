@@ -75,8 +75,10 @@ public class SpringbootAdvanceApplicationTest {
                 .activity(Collections.singletonList(MemberActivityStatusDTO.builder().activityCode("CODE").status("JOIN").signUpDate(new Date()).build()));
         document.setTags(systemTagsDTOBuilder.build());
 
+        Collections.singletonList("")
         ManualTagsDTO.ManualTagsDTOBuilder manualTagsDTOBuilder = ManualTagsDTO.builder();
-        manualTagsDTOBuilder.city(10001L);
+        manualTagsDTOBuilder.city(10001L).gender("MAEL").dietTaste(Collections.singletonList("")).injuryInfo(Collections.singletonList(""))
+        .injurySite(Collections.singletonList("")).profession().fitnessAims().fitnessGoal().fitnessItem().specialCase();
         document.setManualTags(manualTagsDTOBuilder.build());
         memberIndexRepository.index(document);
     }
