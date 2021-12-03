@@ -1,5 +1,7 @@
 package com.advance.mistra.plugin.esannotationversion.document.dto;
 
+import java.util.Date;
+
 import com.advance.mistra.plugin.esannotationversion.annotation.EsQueryField;
 import com.advance.mistra.plugin.esannotationversion.enums.EsQueryTypeEnum;
 import lombok.AllArgsConstructor;
@@ -38,6 +40,6 @@ public class MemberActivityStatusDTO {
      * 报名时间
      */
     @Field(type = FieldType.Long)
-    private Long signUpDate;
+    private Date signUpDate;
 
 }

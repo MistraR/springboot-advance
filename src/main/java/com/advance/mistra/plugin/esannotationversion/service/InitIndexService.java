@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import com.advance.mistra.plugin.esannotationversion.config.IndexConfigEntity;
 import com.advance.mistra.plugin.esannotationversion.config.IndexConfiguration;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class InitIndexService implements CommandLineRunner {
+public class InitIndexService {
 
     private final IndexConfiguration indexEntity;
 
@@ -57,8 +56,4 @@ public class InitIndexService implements CommandLineRunner {
         return true;
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-//        initIndex();
-    }
 }
