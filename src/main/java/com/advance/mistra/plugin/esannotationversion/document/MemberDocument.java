@@ -33,7 +33,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-@Document(indexName = "member", type = "type")
+@Document(indexName = "member", type = "type", shards = 3, replicas = 0, refreshInterval = "10s")
 @EsQueryField(key = "page", type = EsQueryTypeEnum.IGNORE)
 @EsQueryField(key = "size", type = EsQueryTypeEnum.IGNORE)
 @EsQueryField(key = "q", type = EsQueryTypeEnum.FULLTEXT)
