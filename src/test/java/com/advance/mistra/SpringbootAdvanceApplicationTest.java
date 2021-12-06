@@ -80,7 +80,7 @@ public class SpringbootAdvanceApplicationTest {
         manualTagsDTOBuilder.city(10001L).gender("MAEL").dietTaste(Collections.singletonList("IRREGULAR_MEALS")).injuryInfo(Collections.singletonList("NONE"))
                 .injurySite(Collections.singletonList("CERVICAL_VERTEBRA")).profession(Collections.singletonList("FREELANCE"))
                 .fitnessAims(Collections.singletonList("FAT_LOSS")).fitnessGoal(Collections.singletonList("GAIN_WEIGHT")).purchaseIntention("HP")
-                .fitnessItem(Collections.singletonList("GROUP_CLASS")).specialCase(Collections.singletonList("HYPOTHYROIDISM"))
+                .fitnessItem(Collections.singletonList("GROUP_CLASS")).specialCase(Collections.singletonList("HYPOTHYROIDISM")).maritalStatus("UNMARRIED")
                 .favoriteCourseCategory(Collections.singletonList("HIIT")).haveChildren(true).notExercisingReason(Collections.singletonList("BUSINESS_TRIP"))
                 .livingStatus(Collections.singletonList("EXCESSIVE_OVERTIME")).relationship("NORMAL").sleepQuality(Collections.singletonList("INSOMNIA"))
                 .specialStage(Collections.singletonList("PLAN_3_MONTHS_PREGNANT")).exerciseDaily("15-30").trainingParts(Collections.singletonList("CORE"))
