@@ -27,54 +27,58 @@ public class ManualTagsDTO {
     private Long city;
     @Field(type = FieldType.Keyword)
     private String gender;
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<String> dietTaste;
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<String> injuryInfo;
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<String> injurySite;
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<String> profession;
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<String> fitnessAims;
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<String> fitnessGoal;
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<String> fitnessItem;
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<String> specialCase;
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<String> livingStatus;
     @Field(type = FieldType.Keyword)
     private String relationship;
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<String> sleepQuality;
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<String> specialStage;
     @Field(type = FieldType.Keyword)
     private String exerciseDaily;
     @Field(type = FieldType.Keyword)
     private String maritalStatus;
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<String> trainingParts;
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<String> courseDuration;
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<String> dietPreference;
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<Integer> preferredCoach;
     @Field(type = FieldType.Boolean)
-    private List<Integer> conversionResult;
-    @Field(type = FieldType.Nested)
-    private List<Integer> courseDifficulty;
+    private Boolean conversionResult;
+    @Field(type = FieldType.Text)
+    private List<String> courseDifficulty;
     @Field(type = FieldType.Keyword)
     private String fitnessExperience;
     @Field(type = FieldType.Keyword)
     private String purchaseIntention;
     @Field(type = FieldType.Keyword)
     private String exerciseDaysPerWeek;
-    @Field(type = FieldType.Nested)
-    private List<Integer> nonConversionReason;
-    @Field(type = FieldType.Nested)
-    private List<Integer> favoriteCourseCategory;
+    @Field(type = FieldType.Text)
+    private List<String> nonConversionReason;
+    @Field(type = FieldType.Text)
+    private List<String> favoriteCourseCategory;
+    @Field(type = FieldType.Text)
+    private List<String> notExercisingReason;
+    @Field(type = FieldType.Boolean)
+    private Boolean haveChildren;
 }

@@ -7,8 +7,8 @@ import com.advance.mistra.plugin.esannotationversion.document.dto.ManualTagsDTO;
 import com.advance.mistra.plugin.esannotationversion.document.dto.SystemTagsDTO;
 import com.advance.mistra.plugin.esannotationversion.document.dto.UserBasicDTO;
 import com.advance.mistra.plugin.esannotationversion.enums.EsQueryTypeEnum;
-import com.advance.mistra.utils.date.JodaDateTimeDeserializer;
-import com.advance.mistra.utils.date.JodaDateTimeSerializer;
+import com.advance.mistra.utils.date.DateDeserializer;
+import com.advance.mistra.utils.date.DateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
@@ -17,6 +17,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
@@ -74,15 +75,15 @@ public class MemberDocument {
     @Field(type = FieldType.Keyword)
     private String modifier;
 
-    @Field(type = FieldType.Date)
-    @JsonDeserialize(using = JodaDateTimeDeserializer.class)
-    @JsonSerialize(using = JodaDateTimeSerializer.class)
+    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonDeserialize(using = DateDeserializer.class)
+    @JsonSerialize(using = DateSerializer.class)
     @EsQueryField(type = EsQueryTypeEnum.RANGE)
     private Date createTime;
 
-    @Field(type = FieldType.Date)
-    @JsonDeserialize(using = JodaDateTimeDeserializer.class)
-    @JsonSerialize(using = JodaDateTimeSerializer.class)
+    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonDeserialize(using = DateDeserializer.class)
+    @JsonSerialize(using = DateSerializer.class)
     @EsQueryField(type = EsQueryTypeEnum.RANGE)
     private Date modifyTime;
 }

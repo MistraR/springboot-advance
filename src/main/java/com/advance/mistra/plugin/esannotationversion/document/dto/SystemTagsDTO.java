@@ -5,8 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import com.advance.mistra.plugin.esannotationversion.annotation.EsQueryField;
-import com.advance.mistra.utils.date.JodaDateTimeDeserializer;
-import com.advance.mistra.utils.date.JodaDateTimeSerializer;
+import com.advance.mistra.utils.date.DateDeserializer;
+import com.advance.mistra.utils.date.DateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
@@ -14,6 +14,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
@@ -51,9 +52,9 @@ public class SystemTagsDTO {
     /**
      * 今天开始运动时间
      */
-    @Field(type = FieldType.Date)
-    @JsonDeserialize(using = JodaDateTimeDeserializer.class)
-    @JsonSerialize(using = JodaDateTimeSerializer.class)
+    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonDeserialize(using = DateDeserializer.class)
+    @JsonSerialize(using = DateSerializer.class)
     private Date todayStartTrainingTime;
 
     /**
@@ -95,9 +96,9 @@ public class SystemTagsDTO {
     /**
      * 最近完成运动时间
      */
-    @Field(type = FieldType.Date)
-    @JsonDeserialize(using = JodaDateTimeDeserializer.class)
-    @JsonSerialize(using = JodaDateTimeSerializer.class)
+    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonDeserialize(using = DateDeserializer.class)
+    @JsonSerialize(using = DateSerializer.class)
     private Date lastCompleteCourseTime;
 
     /**
@@ -189,7 +190,7 @@ public class SystemTagsDTO {
     /**
      * 健身场景
      */
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<String> senseAttitude;
 
     /**

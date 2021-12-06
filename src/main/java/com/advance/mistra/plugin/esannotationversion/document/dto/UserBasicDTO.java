@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.advance.mistra.plugin.esannotationversion.annotation.EsQueryField;
 import com.advance.mistra.plugin.esannotationversion.enums.EsQueryTypeEnum;
-import com.advance.mistra.utils.date.JodaDateTimeDeserializer;
-import com.advance.mistra.utils.date.JodaDateTimeSerializer;
+import com.advance.mistra.utils.date.DateDeserializer;
+import com.advance.mistra.utils.date.DateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
@@ -14,6 +14,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
@@ -98,32 +99,32 @@ public class UserBasicDTO {
     /**
      * 会员来源
      */
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<String> memberSource;
 
     /**
      * 首成会员日
      */
-    @Field(type = FieldType.Date)
-    @JsonDeserialize(using = JodaDateTimeDeserializer.class)
-    @JsonSerialize(using = JodaDateTimeSerializer.class)
+    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonDeserialize(using = DateDeserializer.class)
+    @JsonSerialize(using = DateSerializer.class)
     private Date firstMemberDay;
 
     /**
      * 会员到期日，计算剩余天数
      */
-    @Field(type = FieldType.Date)
-    @JsonDeserialize(using = JodaDateTimeDeserializer.class)
-    @JsonSerialize(using = JodaDateTimeSerializer.class)
+    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonDeserialize(using = DateDeserializer.class)
+    @JsonSerialize(using = DateSerializer.class)
     @EsQueryField(type = EsQueryTypeEnum.RANGE, nestedPath = "basic")
     private Date memberExpireDay;
 
     /**
      * 会员注册日期
      */
-    @Field(type = FieldType.Date)
-    @JsonDeserialize(using = JodaDateTimeDeserializer.class)
-    @JsonSerialize(using = JodaDateTimeSerializer.class)
+    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonDeserialize(using = DateDeserializer.class)
+    @JsonSerialize(using = DateSerializer.class)
     @EsQueryField(type = EsQueryTypeEnum.RANGE, nestedPath = "basic")
     private Date registerTime;
 
@@ -186,7 +187,7 @@ public class UserBasicDTO {
     /**
      * kolType
      */
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Text)
     private List<String> kolType;
 
     /**
