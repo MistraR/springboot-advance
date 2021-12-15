@@ -48,6 +48,6 @@ public class CommunityUserStatusDTO {
     /**
      * 关联活动code
      */
-    @Field(type = FieldType.Text)
+    @Field(type = FieldType.Keyword)
     private List<String> activityCode;
 }
