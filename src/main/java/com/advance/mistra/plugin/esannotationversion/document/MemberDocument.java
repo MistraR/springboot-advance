@@ -43,11 +43,11 @@ public class MemberDocument {
      * userId
      */
     @Id
-    @EsQueryField(type = EsQueryTypeEnum.IN)
     @Field(type = FieldType.Long)
     private Long id;
 
     @EsQueryField(type = EsQueryTypeEnum.IN)
+    @EsQueryField(type = EsQueryTypeEnum.EQUAL)
     @Field(type = FieldType.Long)
     private Long userId;
 
@@ -75,13 +75,13 @@ public class MemberDocument {
     @Field(type = FieldType.Keyword)
     private String modifier;
 
-    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss")
+    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis")
     @JsonDeserialize(using = DateDeserializer.class)
     @JsonSerialize(using = DateSerializer.class)
     @EsQueryField(type = EsQueryTypeEnum.RANGE)
     private Date createTime;
 
-    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss")
+    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis")
     @JsonDeserialize(using = DateDeserializer.class)
     @JsonSerialize(using = DateSerializer.class)
     @EsQueryField(type = EsQueryTypeEnum.RANGE)

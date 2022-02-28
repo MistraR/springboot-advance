@@ -52,7 +52,7 @@ public class SystemTagsDTO {
     /**
      * 今天开始运动时间
      */
-    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss")
+    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis")
     @JsonDeserialize(using = DateDeserializer.class)
     @JsonSerialize(using = DateSerializer.class)
     private Date todayStartTrainingTime;
@@ -96,7 +96,7 @@ public class SystemTagsDTO {
     /**
      * 最近完成运动时间
      */
-    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss")
+    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis")
     @JsonDeserialize(using = DateDeserializer.class)
     @JsonSerialize(using = DateSerializer.class)
     private Date lastCompleteCourseTime;
@@ -190,7 +190,7 @@ public class SystemTagsDTO {
     /**
      * 健身场景
      */
-    @Field(type = FieldType.Text)
+    @Field(type = FieldType.Keyword)
     private List<String> senseAttitude;
 
     /**

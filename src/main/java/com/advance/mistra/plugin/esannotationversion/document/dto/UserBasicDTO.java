@@ -99,13 +99,13 @@ public class UserBasicDTO {
     /**
      * 会员来源
      */
-    @Field(type = FieldType.Text)
+    @Field(type = FieldType.Keyword)
     private List<String> memberSource;
 
     /**
      * 首成会员日
      */
-    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss")
+    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis")
     @JsonDeserialize(using = DateDeserializer.class)
     @JsonSerialize(using = DateSerializer.class)
     private Date firstMemberDay;
@@ -113,7 +113,7 @@ public class UserBasicDTO {
     /**
      * 会员到期日，计算剩余天数
      */
-    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss")
+    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis")
     @JsonDeserialize(using = DateDeserializer.class)
     @JsonSerialize(using = DateSerializer.class)
     @EsQueryField(type = EsQueryTypeEnum.RANGE, nestedPath = "basic")
@@ -122,7 +122,7 @@ public class UserBasicDTO {
     /**
      * 会员注册日期
      */
-    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss")
+    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis")
     @JsonDeserialize(using = DateDeserializer.class)
     @JsonSerialize(using = DateSerializer.class)
     @EsQueryField(type = EsQueryTypeEnum.RANGE, nestedPath = "basic")
@@ -187,7 +187,7 @@ public class UserBasicDTO {
     /**
      * kolType
      */
-    @Field(type = FieldType.Text)
+    @Field(type = FieldType.Keyword)
     private List<String> kolType;
 
     /**

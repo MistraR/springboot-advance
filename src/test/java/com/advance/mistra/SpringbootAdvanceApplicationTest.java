@@ -3,6 +3,8 @@ package com.advance.mistra;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import javax.annotation.Resource;
 
 import com.advance.mistra.plugin.esannotationversion.document.MemberDocument;
@@ -15,6 +17,8 @@ import com.advance.mistra.plugin.esannotationversion.document.dto.SystemTagsDTO;
 import com.advance.mistra.plugin.esannotationversion.document.dto.UserBasicDTO;
 import com.advance.mistra.plugin.esannotationversion.repo.MemberIndexRepository;
 import com.advance.mistra.plugin.esannotationversion.service.InitIndexService;
+import com.advance.mistra.plugin.esfreemakerversion.util.FreemakerUtil;
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,15 +52,15 @@ public class SpringbootAdvanceApplicationTest {
         Date today = new Date();
         // 创建索引文档
         MemberDocument document = new MemberDocument();
-        document.setId(1412296906794332161L);
-        document.setUserId(1412296906794332161L);
+        document.setId(141229690679433L);
+        document.setUserId(141229690679433L);
         document.setCreator("Mistra");
         document.setModifier("Mistra");
         document.setCreateTime(today);
         document.setModifyTime(today);
 
         UserBasicDTO.UserBasicDTOBuilder userBasicDTOBuilder = UserBasicDTO.builder();
-        userBasicDTOBuilder.city(10001L).accountId(20211126L).gender("MAEL").nickName("昵称").wechatNickname("微信昵称").maskedPhoneNumber("1571947****")
+        userBasicDTOBuilder.city(10001L).accountId(141229690679433L).gender("MAEL").nickName("昵称").wechatNickname("微信昵称").maskedPhoneNumber("1571947****")
                 .consultantEmail("mistra@fiture.com").memberLevel("Lv1").memberUnit("MONTH").memberQuantity(1).memberDayLast(10L)
                 .memberSource(Collections.singletonList("TIME")).firstMemberDay(today).memberExpireDay(DateUtils.addDays(today, 10))
                 .registerTime(today).wechatAdded(true).wechatAccount("DKJHKAJSHKA").memberType("type1").avatarUrl("http://sdkdjslk.jpg")
@@ -79,7 +83,7 @@ public class SpringbootAdvanceApplicationTest {
         ManualTagsDTO.ManualTagsDTOBuilder manualTagsDTOBuilder = ManualTagsDTO.builder();
         manualTagsDTOBuilder.city(10001L).gender("MAEL").dietTaste(Collections.singletonList("IRREGULAR_MEALS")).injuryInfo(Collections.singletonList("NONE"))
                 .injurySite(Collections.singletonList("CERVICAL_VERTEBRA")).profession(Collections.singletonList("FREELANCE"))
-                .fitnessAims(Collections.singletonList("FAT_LOSS")).fitnessGoal(Collections.singletonList("GAIN_WEIGHT")).purchaseIntention("HP")
+                .fitnessAims(Lists.newArrayList("FAT_LOSS", "ADD_LOSS")).fitnessGoal(Collections.singletonList("GAIN_WEIGHT")).purchaseIntention("HP")
                 .fitnessItem(Collections.singletonList("GROUP_CLASS")).specialCase(Collections.singletonList("HYPOTHYROIDISM")).maritalStatus("UNMARRIED")
                 .favoriteCourseCategory(Collections.singletonList("HIIT")).haveChildren(true).notExercisingReason(Collections.singletonList("BUSINESS_TRIP"))
                 .livingStatus(Collections.singletonList("EXCESSIVE_OVERTIME")).relationship("NORMAL").sleepQuality(Collections.singletonList("INSOMNIA"))
@@ -89,5 +93,19 @@ public class SpringbootAdvanceApplicationTest {
                 .nonConversionReason(Collections.singletonList("WEAK_PAYMENT_ABILITY"));
         document.setManualTags(manualTagsDTOBuilder.build());
         memberIndexRepository.index(document);
+    }
+
+    @Test
+    public void freemarker() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("pageNumber", 0);
+        params.put("pageSize", 10);
+        params.put("orderField", "basic.firstMemberDay");
+        params.put("nestedPath", "basic");
+        params.put("order", "desc");
+        params.put("accountId", "141229690679433");
+        params.put("accountIds", Collections.singletonList("141229690679433"));
+        String param = FreemakerUtil.generateEsJson(params, "/esInterface/selectMemberTagsByParam.ftl");
+        System.out.println(param);
     }
 }

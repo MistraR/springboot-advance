@@ -9,6 +9,11 @@ package com.advance.mistra.plugin.esannotationversion.enums;
 public enum EsQueryTypeEnum {
 
     /**
+     * 不等于
+     */
+    NOT_EQUAL,
+
+    /**
      * 等于
      */
     EQUAL,
