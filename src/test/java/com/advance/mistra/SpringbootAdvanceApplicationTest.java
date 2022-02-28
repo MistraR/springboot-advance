@@ -3,6 +3,8 @@ package com.advance.mistra;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import javax.annotation.Resource;
 
 import com.advance.mistra.plugin.esannotationversion.document.MemberDocument;
@@ -15,6 +17,7 @@ import com.advance.mistra.plugin.esannotationversion.document.dto.SystemTagsDTO;
 import com.advance.mistra.plugin.esannotationversion.document.dto.UserBasicDTO;
 import com.advance.mistra.plugin.esannotationversion.repo.MemberIndexRepository;
 import com.advance.mistra.plugin.esannotationversion.service.InitIndexService;
+import com.advance.mistra.plugin.esfreemakerversion.util.FreemakerUtil;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
@@ -90,5 +93,19 @@ public class SpringbootAdvanceApplicationTest {
                 .nonConversionReason(Collections.singletonList("WEAK_PAYMENT_ABILITY"));
         document.setManualTags(manualTagsDTOBuilder.build());
         memberIndexRepository.index(document);
+    }
+
+    @Test
+    public void freemarker() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("pageNumber", 0);
+        params.put("pageSize", 10);
+        params.put("orderField", "basic.firstMemberDay");
+        params.put("nestedPath", "basic");
+        params.put("order", "desc");
+        params.put("accountId", "141229690679433");
+        params.put("accountIds", Collections.singletonList("141229690679433"));
+        String param = FreemakerUtil.generateEsJson(params, "/esInterface/selectMemberTagsByParam.ftl");
+        System.out.println(param);
     }
 }
