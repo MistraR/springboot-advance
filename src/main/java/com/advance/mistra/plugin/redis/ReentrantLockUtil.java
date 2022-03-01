@@ -10,6 +10,7 @@ import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.support.TransactionSynchronizationAdapter;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
@@ -17,6 +18,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  * @author mistra@future.com
  * @date 2022/2/28
  */
+@Component
 public class ReentrantLockUtil {
 
     private static final Logger log = LoggerFactory.getLogger(ReentrantLockUtil.class);
