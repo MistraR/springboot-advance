@@ -23,8 +23,8 @@ public class InternationalizationUtil {
     /**
      * 根据errorCode和本地化对象Local获取国际化提示信息
      *
-     * @param errorCode
-     * @return
+     * @param errorCode errorCode
+     * @return String
      */
     public String i18n(int errorCode) {
         return i18n(String.valueOf(errorCode));

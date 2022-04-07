@@ -45,11 +45,11 @@ public class MD5Util {
     }
 
 
-    public final static String md5x2(String s) throws Exception {
+    public static String md5x2(String s) throws Exception {
         return md5(md5(s));
     }
 
-    public final static String md5(String s, int b) throws Exception {
+    public static String md5(String s, int b) throws Exception {
         try {
             MessageDigest digest = MessageDigest.getInstance("MD5");
 
@@ -68,7 +68,7 @@ public class MD5Util {
         }
     }
 
-    public final static String md5(String s) throws Exception {
+    public static String md5(String s) throws Exception {
 
         char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
