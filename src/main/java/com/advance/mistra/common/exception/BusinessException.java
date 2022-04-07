@@ -23,7 +23,7 @@ public class BusinessException extends RuntimeException {
 
     private static final long serialVersionUID = 7716403813814830930L;
 
-    private int code;
+    private String code;
     private Object[] args;
 
     public BusinessException(String messageCode) {
@@ -41,13 +41,18 @@ public class BusinessException extends RuntimeException {
 
     public BusinessException(int messageCode) {
         super(getCodeMessage(messageCode));
-        this.code = messageCode;
+        this.code = messageCode + "";
     }
 
     public BusinessException(int messageCode, Object... args) {
         super(getCodeMessage(messageCode));
-        this.code = messageCode;
+        this.code = messageCode + "";
         this.args = args;
+    }
+
+    public BusinessException(ResultCode resultCode) {
+        super(resultCode.getErrorMessage());
+        this.code = resultCode.getErrorCode();
     }
 
     private static String getCodeMessage(int messageCode) {

@@ -15,6 +15,8 @@
  * com.advance.mistra.utils：常见工具集(文件，日期，Https，MD5，SpringUtil等等)
  
  ### 中间件集成：
+ * com.advance.mistra.plugin.redis.RedisUtil：集成Redis
+ * com.advance.mistra.plugin.redis.ReentrantLockUtil：集成Redisson 
  * com.advance.mistra.config.MybatisPlusConfig：集成Mybatis-plus
  * com.advance.mistra.plugin.esfreemakerversion：集成ElasticSearch，基于Freemaker拼接查询条件
  * com.advance.mistra.plugin.esannotationversion：集成ElasticSearch，基于注解实现自动拼接查询条件
