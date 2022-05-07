@@ -44,7 +44,7 @@ public class ExcelServiceImpl implements ExcelService {
             EasyExcel.read(multipartFile.getInputStream(), ExcelModel.class, uploadDataListener).sheet()
                     .headRowNumber(1).doRead();
         } catch (IOException e) {
-            log.error("Add member tag read excel file error,file name:{}", multipartFile.getName());
+            log.error("read excel file error,file name:{}", multipartFile.getName());
         }
         for (Map.Entry<Integer, ExcelModel> excelModelEntry : uploadDataListener.getMap().entrySet()) {
             excelModelDao.insert(excelModelEntry.getValue());
