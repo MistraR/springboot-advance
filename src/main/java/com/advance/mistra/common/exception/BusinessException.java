@@ -1,12 +1,12 @@
 package com.advance.mistra.common.exception;
 
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @Author: Mistra
@@ -23,7 +23,7 @@ public class BusinessException extends RuntimeException {
 
     private static final long serialVersionUID = 7716403813814830930L;
 
-    private String code;
+    private Integer code;
     private Object[] args;
 
     public BusinessException(String messageCode) {
@@ -41,12 +41,12 @@ public class BusinessException extends RuntimeException {
 
     public BusinessException(int messageCode) {
         super(getCodeMessage(messageCode));
-        this.code = messageCode + "";
+        this.code = messageCode;
     }
 
     public BusinessException(int messageCode, Object... args) {
         super(getCodeMessage(messageCode));
-        this.code = messageCode + "";
+        this.code = messageCode;
         this.args = args;
     }
 
