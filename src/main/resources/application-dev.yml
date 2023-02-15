@@ -2,6 +2,8 @@ swagger:
   enable: true
 
 spring:
+  messages:
+    basename: i18n.messages
   kafka:
     servers: 139.155.4.123:9092
     bootstrap-servers: 139.155.4.123:9092
