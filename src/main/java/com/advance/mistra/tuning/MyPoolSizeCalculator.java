@@ -52,11 +52,12 @@ public class MyPoolSizeCalculator extends PoolSizeCalculator {
     }
 
     /**
-     * 加入这是你的线程池的任务
+     * 假如这是你的线程池的任务
      */
     class AsynchronousTask implements Runnable {
         @Override
         public void run() {
+            // 业务逻辑代码
 //            System.out.println(Thread.currentThread().getName());
         }
     }
