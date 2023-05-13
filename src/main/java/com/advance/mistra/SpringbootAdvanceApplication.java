@@ -1,6 +1,7 @@
 package com.advance.mistra;
 
 import com.advance.mistra.common.BaseApplication;
+import com.advance.mistra.common.threadpool.EnableDiversityThreadPool;
 import com.advance.mistra.plugin.esfreemakerversion.autowired.EnableEsClientModule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
@@ -21,6 +22,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableCaching
 @EnableScheduling
+@EnableDiversityThreadPool(initPriorityPool = true)
 @EnableEsClientModule
 public class SpringbootAdvanceApplication extends BaseApplication {
 
